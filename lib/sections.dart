@@ -5,7 +5,7 @@ const Color _mediumPurple = Color(0xFF8266D4);
 const Color _tomato = Color(0xFFF95B57);
 const Color _mySin = Color(0xFFF3A646);
 
-const String _kGalleryAssetsPackage = 'assets/background_images';
+const String _kGalleryAssetsPackage = 'assets';
 
 class SectionDetail {
   const SectionDetail({
@@ -53,7 +53,7 @@ class Section {
 // image SectionDetails in the allSections list.
 
 const SectionDetail _eyeglassesDetail = SectionDetail(
-  imageAsset: 'coffee.jpg',
+  imageAsset: 'background_images/coffee.jpg',
   imageAssetPackage: _kGalleryAssetsPackage,
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
@@ -105,7 +105,7 @@ final List<Section> allSections = <Section>[
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
     leftColor: _mediumPurple,
     rightColor: _mariner,
-    backgroundAsset: 'products/sunnies.png',
+    backgroundAsset: 'background_images/coffee.jpg',
     backgroundAssetPackage: _kGalleryAssetsPackage,
     details: <SectionDetail>[
       _eyeglassesDetail,
