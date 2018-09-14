@@ -138,7 +138,7 @@ class SectionDetailView extends StatelessWidget {
     Widget item;
     if (detail.title == null && detail.subtitle == null) {
       item = Container(
-        height: 40.0,
+        height: 240.0,
         padding: const EdgeInsets.all(16.0),
         child: SafeArea(
           top: false,
@@ -150,7 +150,7 @@ class SectionDetailView extends StatelessWidget {
       item = ListTile(
         title: Text(detail.title),
         subtitle: Text(detail.subtitle),
-        leading: SizedBox(width: 32.0, height: 32.0, child: image),
+        leading: SizedBox(width: 70.0, height: 40.0, child: image),
       );
     }
 

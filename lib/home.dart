@@ -275,7 +275,7 @@ class _AllSectionsView extends AnimatedWidget {
   final double maxHeight;
   final List<Widget> sectionCards;
 
-  double _selectedIndexDelta(int index) {
+  num _selectedIndexDelta(int index) {
     return (index.toDouble() - selectedIndex.value).abs().clamp(0.0, 1.0);
   }
 
@@ -439,12 +439,14 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
     );
   }
 
+/*
   void _handleBackButton(double midScrollOffset) {
     if (_scrollController.offset >= midScrollOffset)
       _scrollController.animateTo(0.0, curve: _kScrollCurve, duration: _kScrollDuration);
     else
       Navigator.maybePop(context);
   }
+*/
 
   // Only enable paging for the heading when the user has scrolled to midScrollOffset.
   // Paging is enabled/disabled by setting the heading's PageView scroll physics.
@@ -569,6 +571,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                       child: PageView(
                         physics: _headingScrollPhysics,
                         controller: _headingPageController,
+                        // ignore: argument_type_not_assignable
                         children: _allHeadingItems(appBarMaxHeight, appBarMidScrollOffset),
                       ),
                     ),
@@ -597,6 +600,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
               ],
             ),
           ),
+/*
           Positioned(
             top: statusBarHeight,
             left: 0.0,
@@ -615,6 +619,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
               ),
             ),
           ),
+*/
         ],
       ),
     );
