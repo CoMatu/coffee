@@ -1,37 +1,33 @@
 import 'package:flutter/material.dart';
 
-const Color _mariner = Color(0xFF3B5F8F);
+const Color _brawn = Color(0xFF795548);
+const Color _yellow = Color(0xFFF57F17);
 const Color _mediumPurple = Color(0xFF8266D4);
 const Color _tomato = Color(0xFFF95B57);
-const Color _mySin = Color(0xFFF3A646);
-
-const String _kGalleryAssetsPackage = 'assets';
+const Color _mySin = Color(0xFFA1887F);
+const Color _amber = Color(0xFFFFF8E1);
 
 class SectionDetail {
   const SectionDetail({
     this.title,
     this.subtitle,
     this.imageAsset,
-    this.imageAssetPackage,
   });
   final String title;
   final String subtitle;
   final String imageAsset;
-  final String imageAssetPackage;
 }
 
 class Section {
   const Section({
     this.title,
     this.backgroundAsset,
-    this.backgroundAssetPackage,
     this.leftColor,
     this.rightColor,
     this.details,
   });
   final String title;
   final String backgroundAsset;
-  final String backgroundAssetPackage;
   final Color leftColor;
   final Color rightColor;
   final List<SectionDetail> details;
@@ -53,60 +49,51 @@ class Section {
 // image SectionDetails in the allSections list.
 
 const SectionDetail _eyeglassesDetail = SectionDetail(
-  imageAsset: 'background_images/coffee.jpg',
-  imageAssetPackage: _kGalleryAssetsPackage,
+  imageAsset: 'assets/background_images/coffee.jpg',
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
 const SectionDetail _eyeglassesImageDetail = SectionDetail(
   imageAsset: 'products/sunnies.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
 );
 
 const SectionDetail _seatingDetail = SectionDetail(
   imageAsset: 'products/table.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
 const SectionDetail _seatingImageDetail = SectionDetail(
   imageAsset: 'products/table.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
 );
 
 const SectionDetail _decorationDetail = SectionDetail(
   imageAsset: 'products/earrings.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
 const SectionDetail _decorationImageDetail = SectionDetail(
   imageAsset: 'products/earrings.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
 );
 
 const SectionDetail _protectionDetail = SectionDetail(
   imageAsset: 'products/hat.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
 const SectionDetail _protectionImageDetail = SectionDetail(
   imageAsset: 'products/hat.png',
-  imageAssetPackage: _kGalleryAssetsPackage,
 );
 
 final List<Section> allSections = <Section>[
   const Section(
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
-    leftColor: _mediumPurple,
-    rightColor: _mariner,
-    backgroundAsset: 'background_images/coffee.jpg',
-    backgroundAssetPackage: _kGalleryAssetsPackage,
+    leftColor: _brawn,
+    rightColor: _amber,
+    backgroundAsset: 'assets/background_images/coffee.jpg',
     details: <SectionDetail>[
       _eyeglassesDetail,
       _eyeglassesImageDetail,
@@ -118,10 +105,9 @@ final List<Section> allSections = <Section>[
   ),
   const Section(
     title: 'КОФЕЙНЫЕ НАПИТКИ',
-    leftColor: _tomato,
-    rightColor: _mediumPurple,
-    backgroundAsset: 'products/table.png',
-    backgroundAssetPackage: _kGalleryAssetsPackage,
+    leftColor: _brawn,
+    rightColor: _mySin,
+    backgroundAsset: 'assets/background_images/coffee.jpg',
     details: <SectionDetail>[
       _seatingDetail,
       _seatingImageDetail,
@@ -133,10 +119,9 @@ final List<Section> allSections = <Section>[
   ),
   const Section(
     title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
-    leftColor: _mySin,
-    rightColor: _tomato,
-    backgroundAsset: 'products/earrings.png',
-    backgroundAssetPackage: _kGalleryAssetsPackage,
+    leftColor: _brawn,
+    rightColor: _amber,
+    backgroundAsset: 'assets/background_images/coffee.jpg',
     details: <SectionDetail>[
       _decorationDetail,
       _decorationImageDetail,
@@ -148,10 +133,9 @@ final List<Section> allSections = <Section>[
   ),
   const Section(
     title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
-    leftColor: Colors.white,
-    rightColor: _tomato,
-    backgroundAsset: 'products/hat.png',
-    backgroundAssetPackage: _kGalleryAssetsPackage,
+    leftColor: _brawn,
+    rightColor: _mySin,
+    backgroundAsset: 'assets/background_images/coffee.jpg',
     details: <SectionDetail>[
       _protectionDetail,
       _protectionImageDetail,

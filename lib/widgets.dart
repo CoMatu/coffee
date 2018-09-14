@@ -31,7 +31,6 @@ class SectionCard extends StatelessWidget {
         ),
         child: Image.asset(
           section.backgroundAsset,
-          package: section.backgroundAssetPackage,
           color: const Color.fromRGBO(255, 255, 255, 0.075),
           colorBlendMode: BlendMode.modulate,
           fit: BoxFit.cover,
@@ -129,7 +128,6 @@ class SectionDetailView extends StatelessWidget {
         image: DecorationImage(
           image: AssetImage(
             detail.imageAsset,
-            package: detail.imageAssetPackage,
           ),
           fit: BoxFit.cover,
           alignment: Alignment.center,
@@ -140,7 +138,7 @@ class SectionDetailView extends StatelessWidget {
     Widget item;
     if (detail.title == null && detail.subtitle == null) {
       item = Container(
-        height: 240.0,
+        height: 40.0,
         padding: const EdgeInsets.all(16.0),
         child: SafeArea(
           top: false,

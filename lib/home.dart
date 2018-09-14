@@ -6,7 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'sections.dart';
 import 'widgets.dart';
 
-const Color _kAppBackgroundColor = Color(0xFF353662);
+const Color _kAppBackgroundColor = Colors.brown;
 const Duration _kScrollDuration = Duration(milliseconds: 400);
 const Curve _kScrollCurve = Curves.fastOutSlowIn;
 
