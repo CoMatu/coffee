@@ -1,4 +1,5 @@
 
+import 'package:coffee/card.dart';
 import 'package:flutter/material.dart';
 
 import 'sections.dart';
@@ -147,11 +148,14 @@ class SectionDetailView extends StatelessWidget {
         ),
       );
     } else {
-      item = ListTile(
+      item = ProductCard();
+/*
+          ListTile(
         title: Text(detail.title),
         subtitle: Text(detail.subtitle),
         leading: SizedBox(width: 70.0, height: 40.0, child: image),
       );
+*/
     }
 
     return DecoratedBox(

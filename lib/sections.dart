@@ -95,8 +95,6 @@ final List<Section> allSections = <Section>[
     backgroundAsset: 'assets/background_images/coffee.png',
     details: <SectionDetail>[
       _eyeglassesDetail,
-      _eyeglassesImageDetail,
-      _eyeglassesDetail,
       _eyeglassesDetail,
       _eyeglassesDetail,
       _eyeglassesDetail,

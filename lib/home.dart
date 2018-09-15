@@ -427,6 +427,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
   final PageController _detailsPageController = PageController();
   ScrollPhysics _headingScrollPhysics = const NeverScrollableScrollPhysics();
   ValueNotifier<double> selectedIndex = ValueNotifier<double>(0.0);
+  final ScrollController _scrollControllerSingle = ScrollController(); //добавил для синглскролла с карточками
 
   @override
   Widget build(BuildContext context) {
@@ -588,10 +589,16 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                       child: PageView(
                         controller: _detailsPageController,
                         children: allSections.map((Section section) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: _detailItemsFor(section).toList(),
+                          return SingleChildScrollView(
+                            //TODO разобраться с поведением при скроллинге, не долистывает карточки
+                            controller: _scrollControllerSingle,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: _detailItemsFor(section).toList(),
+                            )
+                            ,
                           );
+
                         }).toList(),
                       ),
                     ),
