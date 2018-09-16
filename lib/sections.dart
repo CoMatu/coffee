@@ -20,13 +20,13 @@ class SectionDetail {
 class Section {
   const Section({
     this.title,
-    this.backgroundAsset,
+//    this.backgroundAsset,
     this.leftColor,
     this.rightColor,
     this.details,
   });
   final String title;
-  final String backgroundAsset;
+//  final String backgroundAsset;
   final Color leftColor;
   final Color rightColor;
   final List<SectionDetail> details;
@@ -68,13 +68,13 @@ const SectionDetail _seatingImageDetail = SectionDetail(
 );
 
 const SectionDetail _decorationDetail = SectionDetail(
-  imageAsset: 'assets/background_images/coffee.png',
+  imageAsset: ' ',
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
 const SectionDetail _decorationImageDetail = SectionDetail(
-  imageAsset: 'assets/background_images/coffee.png',
+  imageAsset: ' ',
 );
 
 const SectionDetail _protectionDetail = SectionDetail(
@@ -92,7 +92,6 @@ final List<Section> allSections = <Section>[
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
     leftColor: _mySin,
     rightColor: _brawn,
-    backgroundAsset: 'assets/background_images/coffee.png',
     details: <SectionDetail>[
       _eyeglassesDetail,
       _eyeglassesDetail,
@@ -104,7 +103,6 @@ final List<Section> allSections = <Section>[
     title: 'КОФЕЙНЫЕ НАПИТКИ',
     leftColor: _brawn,
     rightColor: _brawnLi,
-    backgroundAsset: 'assets/background_images/coffee.png',
     details: <SectionDetail>[
       _seatingDetail,
       _seatingImageDetail,
@@ -118,7 +116,6 @@ final List<Section> allSections = <Section>[
     title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
     leftColor: _brawn,
     rightColor: _grey,
-    backgroundAsset: 'assets/background_images/coffee.png',
     details: <SectionDetail>[
       _decorationDetail,
       _decorationImageDetail,
@@ -132,7 +129,6 @@ final List<Section> allSections = <Section>[
     title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
     leftColor: _brawn,
     rightColor: _amber,
-    backgroundAsset: 'assets/background_images/coffee.png',
     details: <SectionDetail>[
       _protectionDetail,
       _protectionImageDetail,
