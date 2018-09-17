@@ -8,7 +8,6 @@ const Color _amber = Color(0xFFFFF8E1);
 const Color _green = Color(0xFF00BFA5);
 
 class ProductCard extends StatefulWidget {
-
   @override
   ProductCardState createState() {
     return ProductCardState();
@@ -16,7 +15,6 @@ class ProductCard extends StatefulWidget {
 }
 
 class ProductCardState extends State<ProductCard> {
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,104 +22,100 @@ class ProductCardState extends State<ProductCard> {
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Card(
         color: _amber,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              SizedBox(
-                height: 170.0,
-                child: Image.asset(
-                  'assets/product_images/americano.png'
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('КАПУЧИНО',
-                      style: TextStyle(
-                        color: _brawn,
-                        fontSize: 24.0
-                      ),),
-                    ),
-                    Row(
-                      children: <Widget>[
-                        RaisedButton(
-                          color: _green,
-                          child: Text('250 мл',
+              Container( height: 170.0,
+                  child:
+                  Material(
+                    elevation: 4.0,
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5.0),
+                    child: Image.asset('assets/product_images/americano.png'),
+                  )),
+              Container(
+                child: Material(
+                  elevation: 4.0,
+                    color: Colors.white,
+                  borderRadius: BorderRadius.circular(5.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'КАПУЧИНО',
+                        style: TextStyle(
+                            fontFamily: 'Play',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.brown[700]),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text(
+                            '250 мл',
+                            style: TextStyle(
+                                fontFamily: 'Play',
+                                fontSize: 18.0,
+                                color: Colors.green[700]),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '60 руб',
+                              style: TextStyle(
+                                  fontFamily: 'Play',
+                                  fontSize: 18.0,
+                                  color: Colors.blue[700]),
+                            ),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Выбрать количество:',
                           style: TextStyle(
-                            color: _brawn,
-                            fontSize: 18.0
-                          ),
-                          ),
-                          onPressed: (){
-
-                          },
+                              fontFamily: 'Play',
+                              fontSize: 14.0,
+                              color: Colors.brown),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30.0),
-                          child: Text('60 руб.',
-                          style: TextStyle(
-                            fontFamily: 'Lobster'
+                      ),
+                      Row(
+                        children: <Widget>[
+                          IconButton(
+                            color: Colors.red,
+                            icon: Icon(Icons.remove),
+                            onPressed: () {},
                           ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        RaisedButton(
-                          color: _green,
-                          child: Text('350 мл',
-                            style: TextStyle(
-                                color: _brawn,
-                              fontSize: 18.0
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '0',
+                              style: TextStyle(
+                                fontFamily: 'Play',
+                                fontSize: 18.0,
+                              ),
                             ),
                           ),
-                          onPressed: (){
-
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30.0),
-                          child: Text('110 руб.',
-                            style: TextStyle(
-                                fontFamily: 'Lobster'
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: <Widget>[
-                        RaisedButton(
-                          color: _green,
-                          child: Text('450 мл',
-                            style: TextStyle(
-                                color: _brawn,
-                              fontSize: 18.0
-                            ),
-                          ),
-                          onPressed: (){
-
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30.0),
-                          child: Text('165 руб.',
-                            style: TextStyle(
-                                fontFamily: 'Lobster'
-                            ),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
+                          IconButton(
+                            color: Colors.green,
+                            icon: Icon(Icons.add),
+                            onPressed: () {},
+                          )
+                        ],
+                      ),
+                      RaisedButton(
+                        child: Text('В КОРЗИНУ: 0 руб'),
+                      )
+                    ],
+                  ),
                 ),
               )
             ],
           ),
+        ),
       ),
     );
   }

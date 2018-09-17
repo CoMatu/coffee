@@ -27,3 +27,7 @@ flutter:
     - family: Lobster
       fonts:
         - asset: fonts/Lobster-Regular.ttf
+    - family: Play
+      fonts:
+        - asset: fonts/Play-Bold.ttf
+        - asset: fonts/Play-Regular.ttf

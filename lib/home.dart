@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:coffee/card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -563,6 +564,21 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
     }
     return false;
   }
+  bool _handleScrollNotificationList(
+      ScrollNotification notification, double midScrollOffset) {
+    if (notification.depth == 0 && notification is ScrollUpdateNotification) {
+      final ScrollPhysics physics =
+          _scrollControllerSingle.position.pixels >= midScrollOffset
+              ? const PageScrollPhysics()
+              : const NeverScrollableScrollPhysics();
+      if (physics != _headingScrollPhysics) {
+        setState(() {
+          _headingScrollPhysics = physics;
+        });
+      }
+    }
+    return false;
+  }
 
   void _maybeScroll(double midScrollOffset, int pageIndex, double xOffset) {
     if (_scrollController.offset < midScrollOffset) {
@@ -704,16 +720,15 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                       },
                       child: PageView(
                         controller: _detailsPageController,
-                        children: allSections.map((Section section) {
-                          return SingleChildScrollView(
-                            //TODO разобраться с поведением при скроллинге, не долистывает карточки
+                        children: <Widget>[
+                          ListView.builder(
+                            itemCount: 5,
                             controller: _scrollControllerSingle,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: _detailItemsFor(section).toList(),
-                            ),
-                          );
-                        }).toList(),
+                            itemBuilder: (BuildContext context, index){
+                              return ProductCard();
+                            },
+                          )
+                        ]
                       ),
                     ),
                   ),
