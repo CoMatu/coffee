@@ -12,11 +12,11 @@ class Product {
 
 List<Product> coffee = [
   Product('Эспрессо', 'Бодрящий и ароматный',
-      'assets/background_images/coffee.png'),
+      'assets/product_images/americano.png'),
   Product('Американо', 'Бодрящий и ароматный',
-      'assets/background_images/coffee.png'),
+      'assets/product_images/americano.png'),
   Product('Капучино', 'Бодрящий и ароматный',
-      'assets/background_images/coffee.png'),
+      'assets/product_images/americano.png'),
   Product('Латте', 'Бодрящий и ароматный',
-      'assets/background_images/coffee.png'),
+      'assets/product_images/americano.png'),
 ];
