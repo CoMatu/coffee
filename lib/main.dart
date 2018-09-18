@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:coffee/screens/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,5 +21,5 @@ class AnimationDemo extends StatelessWidget {
   const AnimationDemo({Key key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => const AnimationDemoHome();
+  Widget build(BuildContext context) => const AnimationHome();
 }

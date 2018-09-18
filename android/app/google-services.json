@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "473029291676",
+    "firebase_url": "https://coffee-aebae.firebaseio.com",
+    "project_id": "coffee-aebae",
+    "storage_bucket": "coffee-aebae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473029291676:android:1995995ec3fc285b",
+        "android_client_info": {
+          "package_name": "ru.skazkimal.coffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "473029291676-90q4per7ttnpoph7moir97bckvfo1aca.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSq2zbEUePnvEchaCq0lXJRvjqueNkwKg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

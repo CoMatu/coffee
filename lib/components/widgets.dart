@@ -1,8 +1,9 @@
 
-import 'package:coffee/card.dart';
+import 'package:coffee/components/card.dart';
+import 'package:coffee/product.dart';
 import 'package:flutter/material.dart';
 
-import 'sections.dart';
+import 'package:coffee/sections.dart';
 
 const double kSectionIndicatorWidth = 32.0;
 
@@ -30,14 +31,6 @@ class SectionCard extends StatelessWidget {
             ],
           ),
         ),
-/*
-        child: Image.asset(
-          section.backgroundAsset,
-          color: const Color.fromRGBO(255, 255, 255, 0.075),
-          colorBlendMode: BlendMode.modulate,
-          fit: BoxFit.cover,
-        ),
-*/
       ),
     );
   }
@@ -47,7 +40,7 @@ class SectionCard extends StatelessWidget {
 // offset a little. It's supposed to look sort-of 3D.
 class SectionTitle extends StatelessWidget {
   static const TextStyle sectionTitleStyle = TextStyle(
-    fontFamily: 'Raleway',
+    fontFamily: 'Play',
     inherit: false,
     fontSize: 24.0,
     fontWeight: FontWeight.w500,
@@ -121,7 +114,7 @@ class SectionDetailView extends StatelessWidget {
         assert((detail.imageAsset ?? detail.title) != null),
         super(key: key);
 
-  final SectionDetail detail;
+  final Product detail;
 
   @override
   Widget build(BuildContext context) {

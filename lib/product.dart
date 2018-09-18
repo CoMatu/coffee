@@ -1,22 +1,12 @@
 class Product {
   final String title;
-  final String subTitle;
-  final String imageAssets;
+  final String subtitle;
+  final String imageAsset;
   final double price;
   final int volume;
   final String unit;
 
-  const Product(this.title, this.subTitle, this.imageAssets,
-      {this.price, this.volume, this.unit});
+  const Product({
+      this.title, this.subtitle, this.imageAsset,
+      this.price, this.volume, this.unit});
 }
-
-List<Product> coffee = [
-  Product('Эспрессо', 'Бодрящий и ароматный',
-      'assets/product_images/americano.png'),
-  Product('Американо', 'Бодрящий и ароматный',
-      'assets/product_images/americano.png'),
-  Product('Капучино', 'Бодрящий и ароматный',
-      'assets/product_images/americano.png'),
-  Product('Латте', 'Бодрящий и ароматный',
-      'assets/product_images/americano.png'),
-];

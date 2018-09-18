@@ -1,3 +1,4 @@
+import 'package:coffee/product.dart';
 import 'package:flutter/material.dart';
 
 const Color _brawn = Color(0xFF795548);
@@ -6,30 +7,19 @@ const Color _grey = Color(0xFFE0E0E0);
 const Color _mySin = Color(0xFFA1887F);
 const Color _amber = Color(0xFFFFF8E1);
 
-class SectionDetail {
-  const SectionDetail({
-    this.title,
-    this.subtitle,
-    this.imageAsset,
-  });
-  final String title;
-  final String subtitle;
-  final String imageAsset;
-}
-
 class Section {
   const Section({
     this.title,
-//    this.backgroundAsset,
+    this.backgroundAsset,
     this.leftColor,
     this.rightColor,
     this.details,
   });
   final String title;
-//  final String backgroundAsset;
+  final String backgroundAsset;
   final Color leftColor;
   final Color rightColor;
-  final List<SectionDetail> details;
+  final List<Product> details;
 
   @override
   bool operator==(Object other) {
@@ -43,48 +33,25 @@ class Section {
   int get hashCode => title.hashCode;
 }
 
-// TODO(hansmuller): replace the SectionDetail images and text. Get rid of
-// the const vars like _eyeglassesDetail and insert a variety of titles and
-// image SectionDetails in the allSections list.
-
-const SectionDetail _eyeglassesDetail = SectionDetail(
-  imageAsset: 'assets/product_images/americano.png',
-  title: 'Flutter enables interactive animation',
-  subtitle: '3K views - 5 days',
+const Product _eyeglassesDetail = Product(
 );
 
-const SectionDetail _eyeglassesImageDetail = SectionDetail(
-  imageAsset: 'assets/product_images/americano.png',
-);
-
-const SectionDetail _seatingDetail = SectionDetail(
+const Product _seatingDetail = Product(
   imageAsset: 'assets/background_images/coffee.png',
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
-const SectionDetail _seatingImageDetail = SectionDetail(
-  imageAsset: 'assets/background_images/coffee.png',
-);
-
-const SectionDetail _decorationDetail = SectionDetail(
+const Product _decorationDetail = Product(
   imageAsset: ' ',
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
 );
 
-const SectionDetail _decorationImageDetail = SectionDetail(
-  imageAsset: ' ',
-);
-
-const SectionDetail _protectionDetail = SectionDetail(
+const Product _protectionDetail = Product(
   imageAsset: 'assets/background_images/coffee.png',
   title: 'Flutter enables interactive animation',
   subtitle: '3K views - 5 days',
-);
-
-const SectionDetail _protectionImageDetail = SectionDetail(
-  imageAsset: 'assets/background_images/coffee.png',
 );
 
 final List<Section> allSections = <Section>[
@@ -92,46 +59,32 @@ final List<Section> allSections = <Section>[
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
     leftColor: _mySin,
     rightColor: _brawn,
-    details: <SectionDetail>[
-      _eyeglassesDetail,
-      _eyeglassesDetail,
-      _eyeglassesDetail,
-      _eyeglassesDetail,
+    details: <Product>[
+
     ],
   ),
   const Section(
     title: 'КОФЕЙНЫЕ НАПИТКИ',
     leftColor: _brawn,
     rightColor: _brawnLi,
-    details: <SectionDetail>[
-      _seatingDetail,
-      _seatingDetail,
-      _seatingDetail,
-      _seatingDetail,
-      _seatingDetail,
+    details: <Product>[
+
     ],
   ),
   const Section(
     title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
     leftColor: _brawn,
     rightColor: _grey,
-    details: <SectionDetail>[
-      _decorationDetail,
-      _decorationDetail,
-      _decorationDetail,
-      _decorationDetail,
+    details: <Product>[
+
     ],
   ),
   const Section(
     title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
     leftColor: _brawn,
     rightColor: _amber,
-    details: <SectionDetail>[
-      _protectionDetail,
-      _protectionDetail,
-      _protectionDetail,
-      _protectionDetail,
-      _protectionDetail,
+    details: <Product>[
+
     ],
   ),
 ];

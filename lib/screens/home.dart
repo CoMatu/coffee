@@ -1,11 +1,11 @@
 import 'dart:math' as math;
 
-import 'package:coffee/card.dart';
+import 'package:coffee/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import 'sections.dart';
-import 'widgets.dart';
+import 'package:coffee/sections.dart';
+import 'package:coffee/components/widgets.dart';
 
 const Color _kAppBackgroundColor = Colors.brown;
 const Duration _kScrollDuration = Duration(milliseconds: 400);
@@ -28,7 +28,7 @@ const Curve _kScrollCurve = Curves.fastOutSlowIn;
  */
 const double _kAppBarMinHeight = 90.0;
 const double _kAppBarMidHeight = 256.0;
-// The AppBar's max height depends on the screen, see _AnimationDemoHomeState._buildBody()
+// The AppBar's max height depends on the screen, see _AnimationHomeState._buildBody()
 
 // Initially occupies the same space as the status bar and gets smaller as
 // the primary scrollable scrolls upwards.
@@ -506,16 +506,16 @@ class _SnappingScrollPhysics extends ClampingScrollPhysics {
   }
 }
 
-class AnimationDemoHome extends StatefulWidget {
-  const AnimationDemoHome({Key key}) : super(key: key);
+class AnimationHome extends StatefulWidget {
+  const AnimationHome({Key key}) : super(key: key);
 
   static const String routeName = '/animation';
 
   @override
-  _AnimationDemoHomeState createState() => _AnimationDemoHomeState();
+  _AnimationHomeState createState() => _AnimationHomeState();
 }
 
-class _AnimationDemoHomeState extends State<AnimationDemoHome> {
+class _AnimationHomeState extends State<AnimationHome> {
   final ScrollController _scrollController = ScrollController();
   final PageController _headingPageController = PageController();
   final PageController _detailsPageController = PageController();
@@ -590,6 +590,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
     if (notification.depth == 0 && notification is ScrollUpdateNotification) {
       selectedIndex.value = leader.page;
       if (follower.page != leader.page)
+        // ignore: deprecated_member_use
         follower.position.jumpToWithoutSettling(
             leader.position.pixels); // ignore: deprecated_member_use
     }
@@ -598,7 +599,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
 
   Iterable<Widget> _detailItemsFor(Section section) {
     final Iterable<Widget> detailItems =
-        section.details.map((SectionDetail detail) {
+        section.details.map((Product detail) {
       return SectionDetailView(detail: detail);
     });
     return detailItems;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-const Color _brawn = Color(0xFF795548);
-const Color _brawnLi = Color(0xFFFFCC80);
-const Color _grey = Color(0xFFE0E0E0);
-const Color _mySin = Color(0xFFA1887F);
+//const Color _brawn = Color(0xFF795548);
+//const Color _brawnLi = Color(0xFFFFCC80);
+//const Color _grey = Color(0xFFE0E0E0);
+//const Color _mySin = Color(0xFFA1887F);
 const Color _amber = Color(0xFFFFF8E1);
-const Color _green = Color(0xFF00BFA5);
+//const Color _green = Color(0xFF00BFA5);
 
 class ProductCard extends StatefulWidget {
   @override
