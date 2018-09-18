@@ -22,99 +22,120 @@ class ProductCardState extends State<ProductCard> {
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Card(
         color: _amber,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container( height: 170.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                  height: 200.0,
                   child:
-                  Material(
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0, top: 8.0, bottom: 8.0),
+                    child: Material(
+                      elevation: 4.0,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Image.asset('assets/product_images/americano.png',
+                        ),
+                      ),
+                    ),
+                  )),
+
+            ),
+            Expanded(
+              flex: 2,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child:
+                Container(
+                  child: Material(
                     elevation: 4.0,
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5.0),
-                    child: Image.asset('assets/product_images/americano.png'),
-                  )),
-              Container(
-                child: Material(
-                  elevation: 4.0,
-                    color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        'КАПУЧИНО',
-                        style: TextStyle(
-                            fontFamily: 'Play',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.brown[700]),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Text(
-                            '250 мл',
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'КАПУЧИНО',
                             style: TextStyle(
                                 fontFamily: 'Play',
-                                fontSize: 18.0,
-                                color: Colors.green[700]),
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.brown[700]),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text(
+                              '250 мл',
+                              style: TextStyle(
+                                  fontFamily: 'Play',
+                                  fontSize: 18.0,
+                                  color: Colors.green[700]),
+                            ),
+                            Text(
                               '60 руб',
                               style: TextStyle(
                                   fontFamily: 'Play',
                                   fontSize: 18.0,
                                   color: Colors.blue[700]),
-                            ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Выбрать количество:',
-                          style: TextStyle(
-                              fontFamily: 'Play',
-                              fontSize: 14.0,
-                              color: Colors.brown),
+                            )
+                          ],
                         ),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          IconButton(
-                            color: Colors.red,
-                            icon: Icon(Icons.remove),
-                            onPressed: () {},
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 8.0),
+                          child: Text(
+                            'Выбрать количество:',
+                            style: TextStyle(
+                                fontFamily: 'Play',
+                                fontSize: 14.0,
+                                color: Colors.brown),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            IconButton(
+                              color: Colors.red,
+                              icon: Icon(Icons.remove),
+                              onPressed: () {},
+                            ),
+                            Text(
                               '0',
                               style: TextStyle(
                                 fontFamily: 'Play',
                                 fontSize: 18.0,
                               ),
                             ),
+                            IconButton(
+                              color: Colors.green,
+                              icon: Icon(Icons.add),
+                              onPressed: () {},
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: RaisedButton(
+                            child: Text('В КОРЗИНУ: 0 руб'),
+                            onPressed: (){
+
+                            },
                           ),
-                          IconButton(
-                            color: Colors.green,
-                            icon: Icon(Icons.add),
-                            onPressed: () {},
-                          )
-                        ],
-                      ),
-                      RaisedButton(
-                        child: Text('В КОРЗИНУ: 0 руб'),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               )
-            ],
-          ),
+              ,
+            )
+          ],
         ),
       ),
     );
