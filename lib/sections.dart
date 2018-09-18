@@ -105,7 +105,6 @@ final List<Section> allSections = <Section>[
     rightColor: _brawnLi,
     details: <SectionDetail>[
       _seatingDetail,
-      _seatingImageDetail,
       _seatingDetail,
       _seatingDetail,
       _seatingDetail,
@@ -118,8 +117,6 @@ final List<Section> allSections = <Section>[
     rightColor: _grey,
     details: <SectionDetail>[
       _decorationDetail,
-      _decorationImageDetail,
-      _decorationDetail,
       _decorationDetail,
       _decorationDetail,
       _decorationDetail,
@@ -131,7 +128,6 @@ final List<Section> allSections = <Section>[
     rightColor: _amber,
     details: <SectionDetail>[
       _protectionDetail,
-      _protectionImageDetail,
       _protectionDetail,
       _protectionDetail,
       _protectionDetail,

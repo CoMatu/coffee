@@ -696,7 +696,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                 SliverToBoxAdapter(
                   child: SizedBox(
                     //TODO сделать вычисляемый размер
-                    height: 900.0,
+                    height: 1400.0,
                     child: NotificationListener<ScrollNotification>(
                       onNotification: (ScrollNotification notification) {
                         return _handlePageNotification(notification,
