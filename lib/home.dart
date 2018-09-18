@@ -521,8 +521,6 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
   final PageController _detailsPageController = PageController();
   ScrollPhysics _headingScrollPhysics = const NeverScrollableScrollPhysics();
   ValueNotifier<double> selectedIndex = ValueNotifier<double>(0.0);
-  final ScrollController _scrollControllerSingle =
-      ScrollController(); //добавил для синглскролла с карточками
 
   @override
   Widget build(BuildContext context) {
@@ -554,21 +552,6 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
     if (notification.depth == 0 && notification is ScrollUpdateNotification) {
       final ScrollPhysics physics =
           _scrollController.position.pixels >= midScrollOffset
-              ? const PageScrollPhysics()
-              : const NeverScrollableScrollPhysics();
-      if (physics != _headingScrollPhysics) {
-        setState(() {
-          _headingScrollPhysics = physics;
-        });
-      }
-    }
-    return false;
-  }
-  bool _handleScrollNotificationList(
-      ScrollNotification notification, double midScrollOffset) {
-    if (notification.depth == 0 && notification is ScrollUpdateNotification) {
-      final ScrollPhysics physics =
-          _scrollControllerSingle.position.pixels >= midScrollOffset
               ? const PageScrollPhysics()
               : const NeverScrollableScrollPhysics();
       if (physics != _headingScrollPhysics) {
@@ -720,15 +703,12 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
                       },
                       child: PageView(
                         controller: _detailsPageController,
-                        children: <Widget>[
-                          ListView.builder(
-                            itemCount: 5,
-                            controller: _scrollControllerSingle,
-                            itemBuilder: (BuildContext context, index){
-                              return ProductCard();
-                            },
-                          )
-                        ]
+                        children: allSections.map((Section section) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: _detailItemsFor(section).toList(),
+                          );
+                        }).toList(),
                       ),
                     ),
                   ),

@@ -17,7 +17,7 @@ class ProductCard extends StatefulWidget {
 class ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    // TODO: пересмотреть шаблон, выровнять карточки
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Card(
