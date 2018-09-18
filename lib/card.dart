@@ -121,8 +121,13 @@ class ProductCardState extends State<ProductCard> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: RaisedButton(
-                            child: Text('В КОРЗИНУ: 0 руб'),
+                          child: FlatButton(
+                            child: Text('В КОРЗИНУ: 0 руб',
+                            style: TextStyle(
+                              fontFamily: 'Play',
+                              color: Colors.blue
+                            ),),
+                            color: _amber,
                             onPressed: (){
 
                             },
