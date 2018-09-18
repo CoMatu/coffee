@@ -125,32 +125,9 @@ class SectionDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget image = DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6.0),
-        image: DecorationImage(
-          image: AssetImage(
-            detail.imageAsset,
-          ),
-          fit: BoxFit.cover,
-          alignment: Alignment.center,
-        ),
-      ),
-    );
 
     Widget item;
-    if (detail.title == null && detail.subtitle == null) {
-      item = Container(
-        height: 240.0,
-        padding: const EdgeInsets.all(16.0),
-        child: SafeArea(
-          top: false,
-          bottom: false,
-          child: image,
-        ),
-      );
-    } else {
-      item = ProductCard();
+    item = ProductCard();
 /*
           ListTile(
         title: Text(detail.title),
@@ -158,7 +135,7 @@ class SectionDetailView extends StatelessWidget {
         leading: SizedBox(width: 70.0, height: 40.0, child: image),
       );
 */
-    }
+
 
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.grey.shade200),

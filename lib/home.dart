@@ -601,7 +601,7 @@ class _AnimationDemoHomeState extends State<AnimationDemoHome> {
         section.details.map((SectionDetail detail) {
       return SectionDetailView(detail: detail);
     });
-    return ListTile.divideTiles(context: context, tiles: detailItems);
+    return detailItems;
   }
 
   Iterable<Widget> _allHeadingItems(double maxHeight, double midScrollOffset) {
