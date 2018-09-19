@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:coffee/models/product.dart';
-import 'package:coffee/services/getproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:coffee/models/serializers.dart';
 
 class StartScreen extends StatefulWidget{
   @override
@@ -44,7 +44,7 @@ class StartScreenState extends State<StartScreen> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return FutureBuilder(
-      future: productsList(),
+      future: _productsList(),
         builder: (BuildContext context, AsyncSnapshot snapshot){
         return Text(snapshot.toString());
         }
@@ -58,16 +58,11 @@ class StartScreenState extends State<StartScreen> {
     database.setPersistenceEnabled(true);
     database.setPersistenceCacheSizeBytes(5000000);
 
-    var listtttt = productsList();
-
-
-
     //TODO сделать переход на другой экран
 //    Navigator.of(context).pushReplacementNamed('/home');
   }
-  Future<List<Product>> productsList() async{
+  Future<List<Product>> _productsList() async{
     String path = 'section_1';
-    FirebaseDatabase database = FirebaseDatabase();
     var snapshot = await FirebaseDatabase.instance.reference().child('sections').child(path).once();
     List<Product> list = List();
     List snapList = List();
@@ -75,7 +70,11 @@ class StartScreenState extends State<StartScreen> {
     for (var value in snapshot.value) {
       snapList.add(value);
     }
-
+    for (int i = 0; i < snapList.length; i++){
+      Map<String, dynamic> data = Map.from(snapList[i] as Map);
+      Product product = serializers.deserializeWith(Product.serializer, data);
+      list.add(product);
+    }
 
     return list;
   }
