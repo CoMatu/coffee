@@ -52,7 +52,10 @@ final List<Section> allSections = <Section>[
     leftColor: _brawn,
     rightColor: _brawnLi,
     details: <Product>[
-
+      Product(),
+      Product(),
+      Product(),
+      Product(),
     ],
   ),
   const Section(
@@ -61,7 +64,10 @@ final List<Section> allSections = <Section>[
     rightColor: _amber,
 
     details: <Product>[
-
+      Product(),
+      Product(),
+      Product(),
+      Product(),
     ],
   ),
   const Section(
