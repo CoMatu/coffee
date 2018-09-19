@@ -1,4 +1,5 @@
 import 'package:coffee/models/product.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 const Color _brawn = Color(0xFF795548);
@@ -40,7 +41,7 @@ final List<Section> allSections = <Section>[
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
     leftColor: _brawn,
     rightColor: _mySin,
-    details: _productsList(),
+    details: null,
   ),
   Section(
     title: 'КОФЕЙНЫЕ НАПИТКИ',
@@ -68,9 +69,3 @@ final List<Section> allSections = <Section>[
     ],
   ),
 ];
-
-List<Product> _productsList() {
-  List<Product> list;
-
-  return list;
-}

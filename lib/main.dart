@@ -1,3 +1,4 @@
+import 'package:coffee/screens/startscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee/screens/home.dart';
 
@@ -12,7 +13,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.brown,
       ),
-      home: AnimationHome()
+      home: StartScreen(),
+      routes: <String, WidgetBuilder>{
+//      '/LoginScreen': (BuildContext context) => LoginScreen(),
+      '/home': (BuildContext context) => AnimationHome()
+    }
     );
   }
 }

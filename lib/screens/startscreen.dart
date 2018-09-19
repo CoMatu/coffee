@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:coffee/models/product.dart';
+import 'package:coffee/services/getproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -16,7 +18,7 @@ class StartScreenState extends State<StartScreen> {
 
   startTime() async {
     await FirebaseApp.configure(
-      name: 'hr-metrics',
+      name: 'Coffee App',
       options: Platform.isIOS
           ? const FirebaseOptions(
           googleAppID: 'xxxxxxx',
@@ -36,20 +38,45 @@ class StartScreenState extends State<StartScreen> {
   void initState() {
     super.initState();
     startTime();
-    FirebaseDatabase database;
-    database = FirebaseDatabase.instance;
-    database.setPersistenceEnabled(true);
-    database.setPersistenceCacheSizeBytes(10000000);
-
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Text('fffffff');
+    return FutureBuilder(
+      future: productsList(),
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+        return Text(snapshot.toString());
+        }
+    );
   }
 
   void navigationPage() {
+
+    FirebaseDatabase database;
+    database = FirebaseDatabase.instance;
+    database.setPersistenceEnabled(true);
+    database.setPersistenceCacheSizeBytes(5000000);
+
+    var listtttt = productsList();
+
+
+
     //TODO сделать переход на другой экран
+//    Navigator.of(context).pushReplacementNamed('/home');
+  }
+  Future<List<Product>> productsList() async{
+    String path = 'section_1';
+    FirebaseDatabase database = FirebaseDatabase();
+    var snapshot = await FirebaseDatabase.instance.reference().child('sections').child(path).once();
+    List<Product> list = List();
+    List snapList = List();
+
+    for (var value in snapshot.value) {
+      snapList.add(value);
+    }
+
+
+    return list;
   }
 }
