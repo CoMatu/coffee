@@ -110,8 +110,11 @@ class SectionIndicator extends StatelessWidget {
 // Display a single SectionDetail.
 class SectionDetailView extends StatelessWidget {
   SectionDetailView({ Key key, @required this.detail })
-      : assert(detail != null && detail.imageAsset != null),
+      :
+/*
+        assert(detail != null && detail.imageAsset != null),
         assert((detail.imageAsset ?? detail.title) != null),
+*/
         super(key: key);
 
   final Product detail;

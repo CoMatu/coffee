@@ -21,6 +21,7 @@ class Section {
   final Color rightColor;
   final List<Product> details;
 
+/*
   @override
   bool operator==(Object other) {
     if (other is! Section)
@@ -31,36 +32,19 @@ class Section {
 
   @override
   int get hashCode => title.hashCode;
+*/
 }
-
-const Product _eyeglassesDetail = Product(
-);
-
-const Product _seatingDetail = Product(
-  imageAsset: 'assets/background_images/coffee.png',
-  title: 'Flutter enables interactive animation',
-  subtitle: '3K views - 5 days',
-);
-
-const Product _decorationDetail = Product(
-  imageAsset: ' ',
-  title: 'Flutter enables interactive animation',
-  subtitle: '3K views - 5 days',
-);
-
-const Product _protectionDetail = Product(
-  imageAsset: 'assets/background_images/coffee.png',
-  title: 'Flutter enables interactive animation',
-  subtitle: '3K views - 5 days',
-);
 
 final List<Section> allSections = <Section>[
   const Section(
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
-    leftColor: _mySin,
-    rightColor: _brawn,
+    leftColor: _brawn,
+    rightColor: _mySin,
     details: <Product>[
-
+      Product(),
+      Product(),
+      Product(),
+      Product(),
     ],
   ),
   const Section(
@@ -74,7 +58,8 @@ final List<Section> allSections = <Section>[
   const Section(
     title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
     leftColor: _brawn,
-    rightColor: _grey,
+    rightColor: _amber,
+
     details: <Product>[
 
     ],
@@ -82,7 +67,7 @@ final List<Section> allSections = <Section>[
   const Section(
     title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
     leftColor: _brawn,
-    rightColor: _amber,
+    rightColor: _grey,
     details: <Product>[
 
     ],

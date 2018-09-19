@@ -10,16 +10,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
       ),
-      home: AnimationDemo()
+      home: AnimationHome()
     );
   }
-}
-
-class AnimationDemo extends StatelessWidget {
-  const AnimationDemo({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) => const AnimationHome();
 }
