@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:coffee/product.dart';
+import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -599,8 +599,8 @@ class _AnimationHomeState extends State<AnimationHome> {
 
   Iterable<Widget> _detailItemsFor(Section section) {
     final Iterable<Widget> detailItems =
-        section.details.map((Product detail) {
-      return SectionDetailView(detail: detail);
+        section.details.map((Product product) {
+      return SectionDetailView(detail: product);
     });
     return detailItems;
   }

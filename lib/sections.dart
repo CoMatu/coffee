@@ -1,4 +1,4 @@
-import 'package:coffee/product.dart';
+import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 
 const Color _brawn = Color(0xFF795548);
@@ -36,41 +36,30 @@ class Section {
 }
 
 final List<Section> allSections = <Section>[
-  const Section(
+  Section(
     title: 'НАТУРАЛЬНЫЙ КОФЕ',
     leftColor: _brawn,
     rightColor: _mySin,
-    details: <Product>[
-      Product(),
-      Product(),
-      Product(),
-      Product(),
-    ],
+    details: _productsList(),
   ),
-  const Section(
+  Section(
     title: 'КОФЕЙНЫЕ НАПИТКИ',
     leftColor: _brawn,
     rightColor: _brawnLi,
     details: <Product>[
-      Product(),
-      Product(),
-      Product(),
-      Product(),
+
     ],
   ),
-  const Section(
+  Section(
     title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
     leftColor: _brawn,
     rightColor: _amber,
 
     details: <Product>[
-      Product(),
-      Product(),
-      Product(),
-      Product(),
+
     ],
   ),
-  const Section(
+  Section(
     title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
     leftColor: _brawn,
     rightColor: _grey,
@@ -79,3 +68,9 @@ final List<Section> allSections = <Section>[
     ],
   ),
 ];
+
+List<Product> _productsList() {
+  List<Product> list;
+
+  return list;
+}

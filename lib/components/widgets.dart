@@ -1,6 +1,6 @@
 
 import 'package:coffee/components/card.dart';
-import 'package:coffee/product.dart';
+import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 
 import 'package:coffee/sections.dart';
