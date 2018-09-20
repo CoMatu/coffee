@@ -24,6 +24,8 @@ class ProductCardState extends State<ProductCard> {
 
   @override
   Widget build(BuildContext context) {
+    int volume = detail.volume;
+
     // TODO: пересмотреть шаблон, выровнять карточки
     return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -67,7 +69,7 @@ class ProductCardState extends State<ProductCard> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'КАПУЧИНО',
+                            detail.title,
                             style: TextStyle(
                                 fontFamily: 'Play',
                                 fontSize: 20.0,
@@ -79,14 +81,14 @@ class ProductCardState extends State<ProductCard> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Text(
-                              '250 мл',
+                              '$volume мл',
                               style: TextStyle(
                                   fontFamily: 'Play',
                                   fontSize: 18.0,
                                   color: Colors.green[700]),
                             ),
                             Text(
-                              '60 руб',
+                              detail.price.toString()+' руб',
                               style: TextStyle(
                                   fontFamily: 'Play',
                                   fontSize: 18.0,

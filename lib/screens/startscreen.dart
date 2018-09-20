@@ -52,7 +52,7 @@ class StartScreenState extends State<StartScreen> {
     // TODO: implement build
     return Scaffold(
       body: Center(
-        child: FlutterLogo(),
+        child: FlutterLogo(size: 100.0,),
       ),
     );
 /*
@@ -71,15 +71,18 @@ class StartScreenState extends State<StartScreen> {
   }
 
   Future navigationPage() async {
+/*
+//TODO пока отключил офлайн режим, так как почему-то не отслеживает изменения в онлайне
     FirebaseDatabase database;
     database = FirebaseDatabase.instance;
     database.setPersistenceEnabled(true);
     database.setPersistenceCacheSizeBytes(5000000);
+*/
 
-    final List<List<Product>> sectionDataList =
+    List<List<Product>> sectionDataList =
         await GetProductsList().productsList();
 
-    final List<Section> allSections = <Section>[
+    List<Section> allSections = <Section>[
       Section(
         title: 'НАТУРАЛЬНЫЙ КОФЕ',
         leftColor: _brawn,
