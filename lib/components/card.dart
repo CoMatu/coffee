@@ -1,3 +1,4 @@
+import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 
 //const Color _brawn = Color(0xFF795548);
@@ -8,13 +9,19 @@ const Color _amber = Color(0xFFFFF8E1);
 //const Color _green = Color(0xFF00BFA5);
 
 class ProductCard extends StatefulWidget {
+  Product detail;
+  ProductCard(this.detail);
+
   @override
   ProductCardState createState() {
-    return ProductCardState();
+    return ProductCardState(detail);
   }
 }
 
 class ProductCardState extends State<ProductCard> {
+  Product detail;
+  ProductCardState(this.detail);
+
   @override
   Widget build(BuildContext context) {
     // TODO: пересмотреть шаблон, выровнять карточки
@@ -38,7 +45,7 @@ class ProductCardState extends State<ProductCard> {
                       borderRadius: BorderRadius.circular(5.0),
                       child: Padding(
                         padding: const EdgeInsets.all(2.0),
-                        child: Image.asset('assets/product_images/americano.png',
+                        child: Image.network(detail.image,
                         ),
                       ),
                     ),

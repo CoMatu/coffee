@@ -1,6 +1,5 @@
 import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee/screens/startscreen.dart';
 
 class Section {
   const Section({

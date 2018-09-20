@@ -1,6 +1,5 @@
 import 'package:coffee/screens/startscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee/screens/home.dart';
 
 void main() => runApp(MyApp());
 

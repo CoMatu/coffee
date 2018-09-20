@@ -123,7 +123,7 @@ class SectionDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Widget item;
-    item = ProductCard();
+    item = ProductCard(detail);
 /*
           ListTile(
         title: Text(detail.title),
