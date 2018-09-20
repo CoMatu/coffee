@@ -14,10 +14,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.brown,
       ),
       home: StartScreen(),
-      routes: <String, WidgetBuilder>{
-//      '/LoginScreen': (BuildContext context) => LoginScreen(),
-      '/home': (BuildContext context) => AnimationHome()
-    }
     );
   }
 }

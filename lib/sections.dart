@@ -1,12 +1,6 @@
 import 'package:coffee/models/product.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
-const Color _brawn = Color(0xFF795548);
-const Color _brawnLi = Color(0xFFFFCC80);
-const Color _grey = Color(0xFFE0E0E0);
-const Color _mySin = Color(0xFFA1887F);
-const Color _amber = Color(0xFFFFF8E1);
+import 'package:coffee/screens/startscreen.dart';
 
 class Section {
   const Section({
@@ -36,36 +30,5 @@ class Section {
 */
 }
 
-final List<Section> allSections = <Section>[
-  Section(
-    title: 'НАТУРАЛЬНЫЙ КОФЕ',
-    leftColor: _brawn,
-    rightColor: _mySin,
-    details: null,
-  ),
-  Section(
-    title: 'КОФЕЙНЫЕ НАПИТКИ',
-    leftColor: _brawn,
-    rightColor: _brawnLi,
-    details: <Product>[
-
-    ],
-  ),
-  Section(
-    title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
-    leftColor: _brawn,
-    rightColor: _amber,
-
-    details: <Product>[
-
-    ],
-  ),
-  Section(
-    title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
-    leftColor: _brawn,
-    rightColor: _grey,
-    details: <Product>[
-
-    ],
-  ),
-];
+/*
+*/

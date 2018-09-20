@@ -2,12 +2,20 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:coffee/models/product.dart';
+import 'package:coffee/screens/home.dart';
+import 'package:coffee/sections.dart';
+import 'package:coffee/services/getproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:coffee/models/serializers.dart';
 
-class StartScreen extends StatefulWidget{
+const Color _brawn = Color(0xFF795548);
+const Color _brawnLi = Color(0xFFFFCC80);
+const Color _grey = Color(0xFFE0E0E0);
+const Color _mySin = Color(0xFFA1887F);
+const Color _amber = Color(0xFFFFF8E1);
+
+class StartScreen extends StatefulWidget {
   @override
   StartScreenState createState() {
     return StartScreenState();
@@ -15,19 +23,18 @@ class StartScreen extends StatefulWidget{
 }
 
 class StartScreenState extends State<StartScreen> {
-
   startTime() async {
     await FirebaseApp.configure(
       name: 'Coffee App',
       options: Platform.isIOS
           ? const FirebaseOptions(
-          googleAppID: 'xxxxxxx',
-          gcmSenderID: 'xxxxxxx',
-          databaseURL: 'https://coffee-aebae.firebaseio.com/')
+              googleAppID: 'xxxxxxx',
+              gcmSenderID: 'xxxxxxx',
+              databaseURL: 'https://coffee-aebae.firebaseio.com/')
           : const FirebaseOptions(
-          apiKey: 'AIzaSyBEYrlQjhJ0mPCF01b6e7Umt09Fvki8XD8',
-          databaseURL: 'https://coffee-aebae.firebaseio.com/',
-          googleAppID: '1:473029291676:android:1995995ec3fc285b'),
+              apiKey: 'AIzaSyBEYrlQjhJ0mPCF01b6e7Umt09Fvki8XD8',
+              databaseURL: 'https://coffee-aebae.firebaseio.com/',
+              googleAppID: '1:473029291676:android:1995995ec3fc285b'),
     );
 
     var _duration = Duration(seconds: 2);
@@ -43,39 +50,62 @@ class StartScreenState extends State<StartScreen> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return FutureBuilder(
-      future: _productsList(),
-        builder: (BuildContext context, AsyncSnapshot snapshot){
-        return Text(snapshot.toString());
-        }
+    return Scaffold(
+      body: Center(
+        child: FlutterLogo(),
+      ),
     );
+/*
+    return FutureBuilder(
+        future: _productsList(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+//    Navigator.of(context).pushReplacementNamed('/home');
+          return Scaffold(
+              body: Center(
+            child: FlutterLogo(
+              size: 100.0,
+            ),
+          ));
+        });
+*/
   }
 
-  void navigationPage() {
-
+  Future navigationPage() async {
     FirebaseDatabase database;
     database = FirebaseDatabase.instance;
     database.setPersistenceEnabled(true);
     database.setPersistenceCacheSizeBytes(5000000);
 
+    final List<List<Product>> sectionDataList =
+        await GetProductsList().productsList();
+
+    final List<Section> allSections = <Section>[
+      Section(
+        title: 'НАТУРАЛЬНЫЙ КОФЕ',
+        leftColor: _brawn,
+        rightColor: _mySin,
+        details: sectionDataList[0],
+      ),
+      Section(
+        title: 'КОФЕЙНЫЕ НАПИТКИ',
+        leftColor: _brawn,
+        rightColor: _brawnLi,
+        details: sectionDataList[1],
+      ),
+      Section(
+          title: 'МОЛОЧНЫЕ КОКТЕЙЛИ',
+          leftColor: _brawn,
+          rightColor: _amber,
+          details: sectionDataList[2]),
+      Section(
+          title: 'ЧАЙ, ФРЭШ, ТОППИНГИ',
+          leftColor: _brawn,
+          rightColor: _grey,
+          details: sectionDataList[3]),
+    ];
+
     //TODO сделать переход на другой экран
-//    Navigator.of(context).pushReplacementNamed('/home');
-  }
-  Future<List<Product>> _productsList() async{
-    String path = 'section_1';
-    var snapshot = await FirebaseDatabase.instance.reference().child('sections').child(path).once();
-    List<Product> list = List();
-    List snapList = List();
-
-    for (var value in snapshot.value) {
-      snapList.add(value);
-    }
-    for (int i = 0; i < snapList.length; i++){
-      Map<String, dynamic> data = Map.from(snapList[i] as Map);
-      Product product = serializers.deserializeWith(Product.serializer, data);
-      list.add(product);
-    }
-
-    return list;
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AnimationHome(allSections)));
   }
 }

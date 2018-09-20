@@ -507,20 +507,25 @@ class _SnappingScrollPhysics extends ClampingScrollPhysics {
 }
 
 class AnimationHome extends StatefulWidget {
-  const AnimationHome({Key key}) : super(key: key);
+  final List<Section> allSections;
 
+  const AnimationHome(this.allSections, {Key key}) : super(key: key);
   static const String routeName = '/animation';
 
   @override
-  _AnimationHomeState createState() => _AnimationHomeState();
+  _AnimationHomeState createState() => _AnimationHomeState(allSections);
 }
 
 class _AnimationHomeState extends State<AnimationHome> {
+  final List<Section> allSections;
+
   final ScrollController _scrollController = ScrollController();
   final PageController _headingPageController = PageController();
   final PageController _detailsPageController = PageController();
   ScrollPhysics _headingScrollPhysics = const NeverScrollableScrollPhysics();
   ValueNotifier<double> selectedIndex = ValueNotifier<double>(0.0);
+
+  _AnimationHomeState(this.allSections);
 
   @override
   Widget build(BuildContext context) {
