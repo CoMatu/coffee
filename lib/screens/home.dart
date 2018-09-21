@@ -750,6 +750,7 @@ class _AnimationHomeState extends State<AnimationHome> {
   }
 
  Widget _getFAB() {
-    return FloatingActionButton(onPressed: null,);
- }
+
+      return FloatingActionButton(onPressed: null,);
+    }
 }
