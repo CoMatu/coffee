@@ -1,5 +1,6 @@
 import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:coffee/main.dart';
 
 //const Color _brawn = Color(0xFF795548);
 //const Color _brawnLi = Color(0xFFFFCC80);
@@ -159,7 +160,9 @@ class ProductCardState extends State<ProductCard> {
                             ),),
                             color: _amber,
                             onPressed: (){
-
+                              for(int i = 0; i < counter; i++){
+                                orderList.add(detail);
+                              }
                             },
                           ),
                         )

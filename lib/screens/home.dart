@@ -228,7 +228,7 @@ class _AllSectionsLayout extends MultiChildLayoutDelegate {
     double rowCardX = -(selectedIndex * rowCardWidth);
 
     // When tCollapsed > 0 the titles spread apart
-    // Когда tCollapsed> 0, названия разделены
+    // Когда tCollapsed > 0, названия разделены
     final double columnTitleX = size.width / 10.0;
     final double rowTitleWidth = size.width * ((1 + tCollapsed) / 2.25);
     double rowTitleX =
@@ -530,6 +530,7 @@ class _AnimationHomeState extends State<AnimationHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _getFAB(),
       backgroundColor: _kAppBackgroundColor,
       body: Builder(
         // Insert an element so that _buildBody can find the PrimaryScrollController.
@@ -747,4 +748,8 @@ class _AnimationHomeState extends State<AnimationHome> {
       ),
     );
   }
+
+ Widget _getFAB() {
+    return FloatingActionButton(onPressed: null,);
+ }
 }
