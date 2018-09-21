@@ -21,6 +21,22 @@ class ProductCard extends StatefulWidget {
 class ProductCardState extends State<ProductCard> {
   Product detail;
   ProductCardState(this.detail);
+  int counter = 0;
+  double cost = 0.0;
+
+  _addProduct(){
+    setState(() {
+      counter++;
+      cost = counter * detail.price;
+    });
+  }
+  _deleteProduct(){
+    setState(() {
+      if(counter > 0)
+      counter--;
+      cost = counter * detail.price;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,10 +128,12 @@ class ProductCardState extends State<ProductCard> {
                             IconButton(
                               color: Colors.red,
                               icon: Icon(Icons.remove),
-                              onPressed: () {},
+                              onPressed: () {
+                                _deleteProduct();
+                              },
                             ),
                             Text(
-                              '0',
+                              '$counter',
                               style: TextStyle(
                                 fontFamily: 'Play',
                                 fontSize: 18.0,
@@ -124,7 +142,9 @@ class ProductCardState extends State<ProductCard> {
                             IconButton(
                               color: Colors.green,
                               icon: Icon(Icons.add),
-                              onPressed: () {},
+                              onPressed: () {
+                                _addProduct();
+                              },
                             )
                           ],
                         ),
@@ -132,7 +152,7 @@ class ProductCardState extends State<ProductCard> {
                           padding: const EdgeInsets.only(bottom: 8.0),
                           child: FlatButton(
 
-                            child: Text('В КОРЗИНУ: 0 руб',
+                            child: Text('В КОРЗИНУ: $cost руб',
                             style: TextStyle(
                               fontFamily: 'Play',
                               color: Colors.blue
