@@ -4,9 +4,12 @@ import 'package:coffee/main.dart';
 import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:coffee/sections.dart';
 import 'package:coffee/components/widgets.dart';
+import 'package:redux/redux.dart';
+import 'package:coffee/redux/reducers.dart';
 
 const Color _kAppBackgroundColor = Colors.brown;
 const Duration _kScrollDuration = Duration(milliseconds: 400);
@@ -510,15 +513,18 @@ class _SnappingScrollPhysics extends ClampingScrollPhysics {
 class AnimationHome extends StatefulWidget {
   final List<Section> allSections;
 
-  const AnimationHome(this.allSections, {Key key}) : super(key: key);
+  final Store<List<Product>> store;
+
+  const AnimationHome(this.allSections, this.store, {Key key}) : super(key: key);
   static const String routeName = '/animation';
 
   @override
-  _AnimationHomeState createState() => _AnimationHomeState(allSections);
+  _AnimationHomeState createState() => _AnimationHomeState(allSections, store);
 }
 
 class _AnimationHomeState extends State<AnimationHome> {
   final List<Section> allSections;
+  final Store<List<Product>> store;
 
   final ScrollController _scrollController = ScrollController();
   final PageController _headingPageController = PageController();
@@ -526,39 +532,21 @@ class _AnimationHomeState extends State<AnimationHome> {
   ScrollPhysics _headingScrollPhysics = const NeverScrollableScrollPhysics();
   ValueNotifier<double> selectedIndex = ValueNotifier<double>(0.0);
 
-  _AnimationHomeState(this.allSections);
+  _AnimationHomeState(this.allSections, this.store);
 
-  bool statusFAB = false;
-
-  _getFABState(){
-    setState(() {
-      if(!orderList.isEmpty){
-        statusFAB = true;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _getFAB(statusFAB, orderList),
-      backgroundColor: _kAppBackgroundColor,
-      body: Builder(
-        // Insert an element so that _buildBody can find the PrimaryScrollController.
-        //Вставьте элемент так, чтобы _buildBody мог найти основной ScrollController.
-        builder: _buildBody,
-      ),
-    );
+        floatingActionButton: _getFAB(store),
+        backgroundColor: _kAppBackgroundColor,
+        body: Builder(
+          // Insert an element so that _buildBody can find the PrimaryScrollController.
+          //Вставьте элемент так, чтобы _buildBody мог найти основной ScrollController.
+          builder: _buildBody,
+        ),
+      );
   }
-
-/*
-  void _handleBackButton(double midScrollOffset) {
-    if (_scrollController.offset >= midScrollOffset)
-      _scrollController.animateTo(0.0, curve: _kScrollCurve, duration: _kScrollDuration);
-    else
-      Navigator.maybePop(context);
-  }
-*/
 
   // Only enable paging for the heading when the user has scrolled to midScrollOffset.
   // Paging is enabled/disabled by setting the heading's PageView scroll physics.
@@ -616,7 +604,7 @@ class _AnimationHomeState extends State<AnimationHome> {
 
   Iterable<Widget> _detailItemsFor(Section section) {
     final Iterable<Widget> detailItems = section.details.map((Product product) {
-      return SectionDetailView(detail: product);
+      return SectionDetailView(product, store);
     });
     return detailItems;
   }
@@ -759,13 +747,24 @@ class _AnimationHomeState extends State<AnimationHome> {
     );
   }
 
-  Widget _getFAB(bool statusFAB, List<Product> orderList) {
-    _getFABState();
-    if(statusFAB){
-      return FloatingActionButton(
-          backgroundColor: Colors.deepOrange[800],
-          child: Icon(Icons.shopping_cart),
-          onPressed: null);
-    }
+  Widget _getFAB(Store<List<Product>> store) {
+    return StoreProvider<List<Product>>(
+      store: store,
+      child: StoreConnector<List<Product>, String>(
+        converter: (Store store) {
+          return store.state.toString();
+        },
+        builder: (BuildContext context, vm) {
+          if(store.state.isNotEmpty)
+            return FloatingActionButton(
+                backgroundColor: Colors.deepOrange[800],
+                child: Icon(Icons.shopping_cart),
+                onPressed: null);
+          else return Container();
+        },),
+    );
+/*
+*/
+
   }
 }

@@ -4,6 +4,7 @@ import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 
 import 'package:coffee/sections.dart';
+import 'package:redux/src/store.dart';
 
 const double kSectionIndicatorWidth = 32.0;
 
@@ -109,7 +110,8 @@ class SectionIndicator extends StatelessWidget {
 
 // Display a single SectionDetail.
 class SectionDetailView extends StatelessWidget {
-  SectionDetailView({ Key key, @required this.detail })
+  final Store<List<Product>> store;
+  SectionDetailView(this.detail, this.store, {Key key})
       :
 /*
         assert(detail != null && detail.imageAsset != null),
@@ -123,15 +125,7 @@ class SectionDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Widget item;
-    item = ProductCard(detail);
-/*
-          ListTile(
-        title: Text(detail.title),
-        subtitle: Text(detail.subtitle),
-        leading: SizedBox(width: 70.0, height: 40.0, child: image),
-      );
-*/
-
+    item = ProductCard(detail, store);
 
     return DecoratedBox(
       decoration: BoxDecoration(color: Colors.grey.shade200),

@@ -1,6 +1,9 @@
 import 'package:coffee/models/product.dart';
+import 'package:coffee/redux/actions.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee/main.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/src/store.dart';
 
 //const Color _brawn = Color(0xFF795548);
 //const Color _brawnLi = Color(0xFFFFCC80);
@@ -11,17 +14,19 @@ const Color _amber = Color(0xFFFFF8E1);
 
 class ProductCard extends StatefulWidget {
   final Product detail;
-  ProductCard(this.detail);
+  final Store<List<Product>> store;
+  ProductCard(this.detail, this.store);
 
   @override
   ProductCardState createState() {
-    return ProductCardState(detail);
+    return ProductCardState(detail, store);
   }
 }
 
 class ProductCardState extends State<ProductCard> {
   Product detail;
-  ProductCardState(this.detail);
+  Store<List<Product>> store;
+  ProductCardState(this.detail, this.store);
   int counter = 0;
   double cost = 0.0;
 
@@ -123,31 +128,53 @@ class ProductCardState extends State<ProductCard> {
                                 color: Colors.brown),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            IconButton(
-                              color: Colors.red,
-                              icon: Icon(Icons.remove),
-                              onPressed: () {
-                                _deleteProduct();
-                              },
-                            ),
-                            Text(
-                              '$counter',
-                              style: TextStyle(
-                                fontFamily: 'Play',
-                                fontSize: 18.0,
+                        StoreProvider<List<Product>>(
+                          store: store,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              StoreConnector<List<Product>, VoidCallback>(
+                                converter: (store){
+                                  return () => store.dispatch(RemoveProductAction);
+                                },
+                                builder: (context, callback){
+                                  return IconButton(
+                                    color: Colors.red,
+                                    icon: Icon(Icons.remove),
+                                    onPressed: () {
+                                      _deleteProduct();
+                                    },
+                                  );
+                                },
                               ),
-                            ),
-                            IconButton(
-                              color: Colors.green,
-                              icon: Icon(Icons.add),
-                              onPressed: () {
-                                _addProduct();
-                              },
-                            )
-                          ],
+/*
+*/
+                              Text(
+                                '$counter',
+                                style: TextStyle(
+                                  fontFamily: 'Play',
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                              StoreConnector<List<Product>, VoidCallback>(
+                                converter: (store){
+                                  return () => store.dispatch(AddProductAction);
+                                },
+                                builder: (context, callback){
+                                  return IconButton(
+                                    color: Colors.green,
+                                    icon: Icon(Icons.add),
+                                    onPressed: () {
+                                      _addProduct();
+                                      callback;
+                                    },
+                                  );
+                                },
+                              ),
+/*
+*/
+                            ],
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),

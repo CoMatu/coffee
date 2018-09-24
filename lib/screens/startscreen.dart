@@ -7,7 +7,8 @@ import 'package:coffee/sections.dart';
 import 'package:coffee/services/getproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
+import 'package:redux/redux.dart';
+import 'package:coffee/redux/reducers.dart';
 
 const Color _brawn = Color(0xFF795548);
 const Color _brawnLi = Color(0xFFFFCC80);
@@ -23,6 +24,10 @@ class StartScreen extends StatefulWidget {
 }
 
 class StartScreenState extends State<StartScreen> {
+  var store = Store<List<Product>>(productReducer,
+      initialState: List());
+
+
   startTime() async {
     await FirebaseApp.configure(
       name: 'Coffee App',
@@ -109,6 +114,6 @@ class StartScreenState extends State<StartScreen> {
 
     //TODO сделать переход на другой экран
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => AnimationHome(allSections)));
+        context, MaterialPageRoute(builder: (context) => AnimationHome(allSections, store)));
   }
 }
