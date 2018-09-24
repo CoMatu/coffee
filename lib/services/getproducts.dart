@@ -12,7 +12,7 @@ class GetProductsList {
 
     Map data = count.value;
     childNumber = data.length;
-    print('количество детей в этой базе: ' + childNumber.toString());
+//    print('количество детей в этой базе: ' + childNumber.toString());
     List<List<Product>> list = List();
     //формируем списки продуктов для каждой секции
     for (int i = 0; i < data.length; i++) {

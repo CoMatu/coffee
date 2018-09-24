@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:coffee/main.dart';
 import 'package:coffee/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -527,10 +528,20 @@ class _AnimationHomeState extends State<AnimationHome> {
 
   _AnimationHomeState(this.allSections);
 
+  bool statusFAB = false;
+
+  _getFABState(){
+    setState(() {
+      if(!orderList.isEmpty){
+        statusFAB = true;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _getFAB(),
+      floatingActionButton: _getFAB(statusFAB, orderList),
       backgroundColor: _kAppBackgroundColor,
       body: Builder(
         // Insert an element so that _buildBody can find the PrimaryScrollController.
@@ -604,8 +615,7 @@ class _AnimationHomeState extends State<AnimationHome> {
   }
 
   Iterable<Widget> _detailItemsFor(Section section) {
-    final Iterable<Widget> detailItems =
-        section.details.map((Product product) {
+    final Iterable<Widget> detailItems = section.details.map((Product product) {
       return SectionDetailView(detail: product);
     });
     return detailItems;
@@ -749,8 +759,13 @@ class _AnimationHomeState extends State<AnimationHome> {
     );
   }
 
- Widget _getFAB() {
-
-      return FloatingActionButton(onPressed: null,);
+  Widget _getFAB(bool statusFAB, List<Product> orderList) {
+    _getFABState();
+    if(statusFAB){
+      return FloatingActionButton(
+          backgroundColor: Colors.deepOrange[800],
+          child: Icon(Icons.shopping_cart),
+          onPressed: null);
     }
+  }
 }

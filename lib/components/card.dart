@@ -10,7 +10,7 @@ const Color _amber = Color(0xFFFFF8E1);
 //const Color _green = Color(0xFF00BFA5);
 
 class ProductCard extends StatefulWidget {
-  Product detail;
+  final Product detail;
   ProductCard(this.detail);
 
   @override
