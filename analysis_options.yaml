@@ -6,6 +6,8 @@ analyzer:
   exclude:
     - flutter/**
     - lib/api/*.dart
+  language:
+    enableSuperMixins: true
 
 linter:
   rules:

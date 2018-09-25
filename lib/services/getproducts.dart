@@ -5,13 +5,11 @@ import 'package:coffee/models/serializers.dart';
 
 class GetProductsList {
   Future<List<List<Product>>> productsList() async {
-    int childNumber;
     // считываем размер списка секций
     var count =
     await FirebaseDatabase.instance.reference().child('sections').once();
 
     Map data = count.value;
-    childNumber = data.length;
 //    print('количество детей в этой базе: ' + childNumber.toString());
     List<List<Product>> list = List();
     //формируем списки продуктов для каждой секции

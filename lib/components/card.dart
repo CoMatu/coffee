@@ -1,9 +1,8 @@
 import 'package:coffee/models/product.dart';
-import 'package:coffee/redux/actions.dart';
+import 'package:coffee/scoped/model.dart';
 import 'package:flutter/material.dart';
 import 'package:coffee/main.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/src/store.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 //const Color _brawn = Color(0xFF795548);
 //const Color _brawnLi = Color(0xFFFFCC80);
@@ -12,44 +11,18 @@ import 'package:redux/src/store.dart';
 const Color _amber = Color(0xFFFFF8E1);
 //const Color _green = Color(0xFF00BFA5);
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   final Product detail;
-  final Store<List<Product>> store;
-  ProductCard(this.detail, this.store);
-
-  @override
-  ProductCardState createState() {
-    return ProductCardState(detail, store);
-  }
-}
-
-class ProductCardState extends State<ProductCard> {
-  Product detail;
-  Store<List<Product>> store;
-  ProductCardState(this.detail, this.store);
-  int counter = 0;
-  double cost = 0.0;
-
-  _addProduct(){
-    setState(() {
-      counter++;
-      cost = counter * detail.price;
-    });
-  }
-  _deleteProduct(){
-    setState(() {
-      if(counter > 0)
-      counter--;
-      cost = counter * detail.price;
-    });
-  }
+  ProductCard(this.detail);
 
   @override
   Widget build(BuildContext context) {
     int volume = detail.volume;
 
     // TODO: пересмотреть шаблон, выровнять карточки
-    return Padding(
+    return ScopedModel<MainModel>(
+      model: MainModel(),
+      child: Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Card(
         color: _amber,
@@ -128,71 +101,71 @@ class ProductCardState extends State<ProductCard> {
                                 color: Colors.brown),
                           ),
                         ),
-                        StoreProvider<List<Product>>(
-                          store: store,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              StoreConnector<List<Product>, VoidCallback>(
-                                converter: (store){
-                                  return () => store.dispatch(RemoveProductAction);
-                                },
-                                builder: (context, callback){
-                                  return IconButton(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            ScopedModelDescendant<MainModel>(
+                              builder: (context, child, model){
+                                return IconButton(
                                     color: Colors.red,
                                     icon: Icon(Icons.remove),
                                     onPressed: () {
-                                      _deleteProduct();
-                                    },
-                                  );
-                                },
-                              ),
-/*
-*/
-                              Text(
-                                '$counter',
-                                style: TextStyle(
-                                  fontFamily: 'Play',
-                                  fontSize: 18.0,
-                                ),
-                              ),
-                              StoreConnector<List<Product>, VoidCallback>(
-                                converter: (store){
-                                  return () => store.dispatch(AddProductAction);
-                                },
-                                builder: (context, callback){
-                                  return IconButton(
-                                    color: Colors.green,
-                                    icon: Icon(Icons.add),
-                                    onPressed: () {
-                                      _addProduct();
-                                      callback;
-                                    },
-                                  );
-                                },
-                              ),
-/*
-*/
-                            ],
-                          ),
+                                      model.decrement();
+                                    }
+                                );
+                              },
+                            ),
+                            ScopedModelDescendant<MainModel>(
+                              builder: (context, child, model){
+                                int count = model.counter;
+                                return Text(
+                                  '$count',
+                                  style: TextStyle(
+                                    fontFamily: 'Play',
+                                    fontSize: 18.0,
+                                  ),
+                                );
+                              },
+                            ),
+                            ScopedModelDescendant<MainModel>(
+                              builder: (context, child, model){
+                                return IconButton(
+                                  color: Colors.green,
+                                  icon: Icon(Icons.add),
+                                  onPressed: () {
+                                    model.increment();
+                                  },
+                                );
+
+                              },
+                            )
+                          ],
                         ),
+/*
                         Padding(
                           padding: const EdgeInsets.only(bottom: 8.0),
-                          child: FlatButton(
+                          child: ScopedModelDescendant<ProductModel>(
+                              builder: (context, child, model){
+                                return FlatButton(
+                                  child: Text('В КОРЗИНУ: $cost руб',
+                                    style: TextStyle(
+                                        fontFamily: 'Play',
+                                        color: Colors.blue
+                                    ),),
+                                  color: _amber,
+                                  onPressed: (){
+                                    for(int i = 0; i < counter; i++){
+                                      //orderList.add(detail);
+                                      model.orderList.add(detail);
+                                      print(model.orderList.toString());
+                                    }
+                                  },
+                                );
 
-                            child: Text('В КОРЗИНУ: $cost руб',
-                            style: TextStyle(
-                              fontFamily: 'Play',
-                              color: Colors.blue
-                            ),),
-                            color: _amber,
-                            onPressed: (){
-                              for(int i = 0; i < counter; i++){
-                                orderList.add(detail);
                               }
-                            },
-                          ),
+                          )
                         )
+*/
                       ],
                     ),
                   ),
@@ -203,6 +176,7 @@ class ProductCardState extends State<ProductCard> {
           ],
         ),
       ),
+    )
     );
   }
 }
