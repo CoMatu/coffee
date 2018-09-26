@@ -744,7 +744,7 @@ class _AnimationHomeState extends State<AnimationHome> {
   void _persistentBottomSheet(GlobalKey<ScaffoldState> _scaffoldKey) {
     _scaffoldKey.currentState.showBottomSheet((context){
       return Container(
-        color: Colors.orange[200],
+        color: Colors.blue[200],
         //TODO сделать вычисляемое значение
         height: 400.0,
         child: Center(
