@@ -1,4 +1,3 @@
-import 'package:coffee/models/product.dart';
 import 'package:coffee/scoped/model.dart';
 import 'package:coffee/screens/startscreen.dart';
 import 'package:flutter/material.dart';

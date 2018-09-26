@@ -9,7 +9,7 @@ import 'package:coffee/sections.dart';
 import 'package:coffee/components/widgets.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-const Color _kAppBackgroundColor = Colors.brown;
+const Color _kAppBackgroundColor = Colors.purple;
 const Duration _kScrollDuration = Duration(milliseconds: 400);
 const Curve _kScrollCurve = Curves.fastOutSlowIn;
 
@@ -519,6 +519,7 @@ class AnimationHome extends StatefulWidget {
 }
 
 class _AnimationHomeState extends State<AnimationHome> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final List<Section> allSections;
 
   final ScrollController _scrollController = ScrollController();
@@ -533,7 +534,8 @@ class _AnimationHomeState extends State<AnimationHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: _getFAB(),
+      key: _scaffoldKey,
+        floatingActionButton: _getFAB(_scaffoldKey),
         backgroundColor: _kAppBackgroundColor,
         body: Builder(
           // Insert an element so that _buildBody can find the PrimaryScrollController.
@@ -722,18 +724,33 @@ class _AnimationHomeState extends State<AnimationHome> {
     );
   }
 
-  Widget _getFAB() {
+  Widget _getFAB(GlobalKey<ScaffoldState> _scaffoldKey) {
     return ScopedModelDescendant<MainModel>(
       builder: (context, child, model){
         if(model.orderList.isNotEmpty){
           return FloatingActionButton(
-              backgroundColor: Colors.deepOrange[800],
+              backgroundColor: Colors.blue[400],
               child: Icon(Icons.shopping_cart),
-              onPressed: null);
+              onPressed: (){
+                _persistentBottomSheet(_scaffoldKey);
+              });
         } else {
           return Container();
         }
       }
     );
+  }
+
+  void _persistentBottomSheet(GlobalKey<ScaffoldState> _scaffoldKey) {
+    _scaffoldKey.currentState.showBottomSheet((context){
+      return Container(
+        color: Colors.orange[200],
+        //TODO сделать вычисляемое значение
+        height: 400.0,
+        child: Center(
+          child: Text("Hey! guys , this is a persistent bottom sheet"),
+        ),
+      );
+    });
   }
 }
