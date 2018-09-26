@@ -1,7 +1,6 @@
 import 'package:coffee/models/product.dart';
 import 'package:coffee/scoped/model.dart';
 import 'package:flutter/material.dart';
-import 'package:coffee/main.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 //const Color _brawn = Color(0xFF795548);
@@ -20,9 +19,7 @@ class ProductCard extends StatelessWidget {
     int volume = detail.volume;
 
     // TODO: пересмотреть шаблон, выровнять карточки
-    return ScopedModel<MainModel>(
-      model: MainModel(),
-      child: Padding(
+      return Padding(
       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Card(
         color: _amber,
@@ -101,45 +98,51 @@ class ProductCard extends StatelessWidget {
                                 color: Colors.brown),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            ScopedModelDescendant<MainModel>(
-                              builder: (context, child, model){
-                                return IconButton(
-                                    color: Colors.red,
-                                    icon: Icon(Icons.remove),
-                                    onPressed: () {
-                                      model.decrement();
-                                    }
-                                );
-                              },
-                            ),
-                            ScopedModelDescendant<MainModel>(
-                              builder: (context, child, model){
-                                int count = model.counter;
-                                return Text(
-                                  '$count',
-                                  style: TextStyle(
-                                    fontFamily: 'Play',
-                                    fontSize: 18.0,
-                                  ),
-                                );
-                              },
-                            ),
-                            ScopedModelDescendant<MainModel>(
-                              builder: (context, child, model){
-                                return IconButton(
-                                  color: Colors.green,
-                                  icon: Icon(Icons.add),
-                                  onPressed: () {
-                                    model.increment();
+                        Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              ScopedModelDescendant<MainModel>(
+                                builder: (context, child, model){
+                                  return IconButton(
+                                      color: Colors.red,
+                                      icon: Icon(Icons.remove, size: 30.0,),
+                                      onPressed: () {
+                                        model.removeProduct(detail);
+                                      }
+                                  );
+                                },
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+                                child: ScopedModelDescendant<MainModel>(
+                                  builder: (context, child, model){
+                                    int count = model.getProductCount(detail);
+                                    return Text(
+                                      '$count',
+                                      style: TextStyle(
+                                        fontFamily: 'Play',
+                                        fontSize: 24.0,
+                                      ),
+                                    );
                                   },
-                                );
+                                ),
+                              ),
+                              ScopedModelDescendant<MainModel>(
+                                builder: (context, child, model){
+                                  return IconButton(
+                                    color: Colors.green,
+                                    icon: Icon(Icons.add, size: 30.0,),
+                                    onPressed: () {
+                                      model.addProduct(detail);
+                                    },
+                                  );
 
-                              },
-                            )
-                          ],
+                                },
+                              )
+                            ],
+                          ),
                         ),
 /*
                         Padding(
@@ -176,7 +179,6 @@ class ProductCard extends StatelessWidget {
           ],
         ),
       ),
-    )
     );
   }
 }

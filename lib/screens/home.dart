@@ -1,11 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:coffee/models/product.dart';
+import 'package:coffee/scoped/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:coffee/sections.dart';
 import 'package:coffee/components/widgets.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 const Color _kAppBackgroundColor = Colors.brown;
 const Duration _kScrollDuration = Duration(milliseconds: 400);
@@ -715,36 +717,23 @@ class _AnimationHomeState extends State<AnimationHome> {
               ],
             ),
           ),
-/*
-          Positioned(
-            top: statusBarHeight,
-            left: 0.0,
-            child: IconTheme(
-              data: const IconThemeData(color: Colors.white),
-              child: SafeArea(
-                top: false,
-                bottom: false,
-                child: IconButton(
-                    icon: const BackButtonIcon(),
-                    tooltip: 'Back',
-                    onPressed: () {
-                      _handleBackButton(appBarMidScrollOffset);
-                    }
-                ),
-              ),
-            ),
-          ),
-*/
         ],
       ),
     );
   }
 
   Widget _getFAB() {
-    return FloatingActionButton(
-        backgroundColor: Colors.deepOrange[800],
-        child: Icon(Icons.shopping_cart),
-        onPressed: null);
-
+    return ScopedModelDescendant<MainModel>(
+      builder: (context, child, model){
+        if(model.orderList.isNotEmpty){
+          return FloatingActionButton(
+              backgroundColor: Colors.deepOrange[800],
+              child: Icon(Icons.shopping_cart),
+              onPressed: null);
+        } else {
+          return Container();
+        }
+      }
+    );
   }
 }

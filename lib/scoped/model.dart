@@ -2,56 +2,36 @@ import 'package:coffee/models/product.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class ProductModel extends Model {
-  List<Product> _orderList = List();
+  List<Product> _orderList = [];
   List<Product> get orderList => _orderList;
 
-  int _counter = 0;
-  int get counter => _counter;
-
-}
-
-abstract class IncrementProduct extends ProductModel {
-  void increment(){
-    _counter++;
-    notifyListeners();
+  int getProductCount(Product product){
+    List<Product> proList = [];
+    for(int i = 0; i < _orderList.length; i++){
+      if(_orderList[i].id == product.id){
+        proList.add(_orderList[i]);
+      }
+    }
+    return proList.length;
   }
+
 }
 
-abstract class DecrementProduct extends ProductModel {
-  void decrement(){
-    if(_counter > 0)
-    _counter--;
-    notifyListeners();
-  }
-}
-
-class MainModel extends Model with ProductModel,
-    IncrementProduct, DecrementProduct{}
-
-/*
-abstract class AddProduct extends ProductModel{
-  Product product;
-  AddProduct(this.product);
-  void addProduct() {
+abstract class AddProduct extends ProductModel {
+  void addProduct(Product product){
     _orderList.add(product);
     notifyListeners();
   }
 }
 
-abstract class RemoveLastProduct extends ProductModel{
-  Product product;
-  RemoveLastProduct(this.product);
-  void addProduct() {
-    _orderList.removeLast();
+abstract class RemoveProduct extends ProductModel {
+  void removeProduct(Product product){
+    if(_orderList.length > 0)
+      _orderList.remove(product);
+      //remove product
     notifyListeners();
   }
 }
 
-abstract class ResetProduct extends ProductModel{
-  Product product;
-  ResetProduct(this.product);
-  void addProduct() {
-    _orderList.clear();
-    notifyListeners();
-  }
-}*/
+class MainModel extends Model with ProductModel,
+    AddProduct, RemoveProduct{}
