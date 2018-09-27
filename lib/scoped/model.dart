@@ -15,6 +15,13 @@ class ProductModel extends Model {
     return proList.length;
   }
 
+  double getOrderCost(){
+    double orderCost = 0.00;
+    for(int i = 0; i < _orderList.length; i++){
+      //TODO расчет
+    }
+  }
+
 }
 
 abstract class AddProduct extends ProductModel {
