@@ -19,7 +19,9 @@ class ProductModel extends Model {
     double orderCost = 0.00;
     for(int i = 0; i < _orderList.length; i++){
       //TODO расчет
+      orderCost = orderCost + _orderList[i].price;
     }
+    return orderCost;
   }
 
 }

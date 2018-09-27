@@ -728,11 +728,13 @@ class _AnimationHomeState extends State<AnimationHome> {
   Widget _getFAB(GlobalKey<ScaffoldState> _scaffoldKey) {
     return ScopedModelDescendant<MainModel>(
       builder: (context, child, model){
+        double cost = model.getOrderCost();
+
         if(model.orderList.isNotEmpty){
           return FloatingActionButton.extended(
               backgroundColor: Colors.blue[400],
               icon: Icon(Icons.shopping_cart),
-              label: Text('Сумма заказа 200 руб'),
+              label: Text('Сумма заказа $cost руб'),
               onPressed: (){
                 _persistentBottomSheet(_scaffoldKey);
               });
@@ -752,7 +754,7 @@ class _AnimationHomeState extends State<AnimationHome> {
             //TODO сделать вычисляемое значение
             height: 400.0,
             child: Center(
-              child: Text("Hey! guys , this is a persistent bottom sheet"),
+              child: Text('список покупок'),
             ),
           );
         },
