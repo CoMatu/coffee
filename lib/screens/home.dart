@@ -536,6 +536,7 @@ class _AnimationHomeState extends State<AnimationHome> {
     return Scaffold(
       key: _scaffoldKey,
         floatingActionButton: _getFAB(_scaffoldKey),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         backgroundColor: _kAppBackgroundColor,
         body: Builder(
           // Insert an element so that _buildBody can find the PrimaryScrollController.
@@ -728,9 +729,10 @@ class _AnimationHomeState extends State<AnimationHome> {
     return ScopedModelDescendant<MainModel>(
       builder: (context, child, model){
         if(model.orderList.isNotEmpty){
-          return FloatingActionButton(
+          return FloatingActionButton.extended(
               backgroundColor: Colors.blue[400],
-              child: Icon(Icons.shopping_cart),
+              icon: Icon(Icons.shopping_cart),
+              label: Text('Сумма заказа 200 руб'),
               onPressed: (){
                 _persistentBottomSheet(_scaffoldKey);
               });
@@ -743,14 +745,19 @@ class _AnimationHomeState extends State<AnimationHome> {
 
   void _persistentBottomSheet(GlobalKey<ScaffoldState> _scaffoldKey) {
     _scaffoldKey.currentState.showBottomSheet((context){
-      return Container(
-        color: Colors.blue[200],
-        //TODO сделать вычисляемое значение
-        height: 400.0,
-        child: Center(
-          child: Text("Hey! guys , this is a persistent bottom sheet"),
-        ),
+      return ScopedModelDescendant<MainModel>(
+        builder: (context, child, model){
+          return Container(
+            color: Colors.blue[200],
+            //TODO сделать вычисляемое значение
+            height: 400.0,
+            child: Center(
+              child: Text("Hey! guys , this is a persistent bottom sheet"),
+            ),
+          );
+        },
       );
+
     });
   }
 }
