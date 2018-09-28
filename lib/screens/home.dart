@@ -763,6 +763,7 @@ class _AnimationHomeState extends State<AnimationHome> {
                       child: ListView.builder(
                           itemCount: model.orderList.length,
                           itemBuilder: (context, index){
+                            int productCount = _getCount(model.orderList, model.orderList[index].id);
                             return Row(
                               children: <Widget>[
                                 Text(model.orderList[index].title.toString()),
@@ -772,7 +773,7 @@ class _AnimationHomeState extends State<AnimationHome> {
                                   },
                                     icon: Icon(Icons.remove, color: Colors.red,),
                                 ),
-                                Text('12'),
+                                Text('$productCount'),
                                 IconButton(
                                   onPressed: (){
                                     //TODO
@@ -787,7 +788,9 @@ class _AnimationHomeState extends State<AnimationHome> {
 
                     ),
                     RaisedButton(
-                        onPressed: null,
+                        onPressed: (){
+
+                        },
                         child: Text('ОПЛАТИТЬ'))
                   ],
                 ),
@@ -798,5 +801,16 @@ class _AnimationHomeState extends State<AnimationHome> {
       );
 
     });
+  }
+
+  int _getCount(List<Product> orderList, int id) {
+    int lenght = orderList.length;
+    int count = 0;
+    for(int i = 0; i < lenght; i++){
+      if(orderList[i].id == id){
+        count++;
+      }
+    }
+    return count;
   }
 }
