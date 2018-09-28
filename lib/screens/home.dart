@@ -747,17 +747,54 @@ class _AnimationHomeState extends State<AnimationHome> {
 
   void _persistentBottomSheet(GlobalKey<ScaffoldState> _scaffoldKey) {
     _scaffoldKey.currentState.showBottomSheet((context){
-      return ScopedModelDescendant<MainModel>(
-        builder: (context, child, model){
-          return Container(
-            color: Colors.blue[200],
-            //TODO сделать вычисляемое значение
-            height: 400.0,
-            child: Center(
-              child: Text('список покупок'),
-            ),
-          );
-        },
+      return Padding(
+        padding: const EdgeInsets.only(left: 60.0, right: 60.0,
+            top: 25.0, bottom: 20.0),
+        child: ScopedModelDescendant<MainModel>(
+          builder: (context, child, model){
+            return Container(
+              color: Colors.orange[200],
+              //TODO сделать вычисляемое значение
+              height: 400.0,
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: model.orderList.length,
+                          itemBuilder: (context, index){
+                            return Row(
+                              children: <Widget>[
+                                Text(model.orderList[index].title.toString()),
+                                IconButton(
+                                  onPressed: (){
+                                    //TODO
+                                  },
+                                    icon: Icon(Icons.remove, color: Colors.red,),
+                                ),
+                                Text('12'),
+                                IconButton(
+                                  onPressed: (){
+                                    //TODO
+                                  },
+                                  icon: Icon(Icons.add, color: Colors.blue,),
+                                )
+
+                            ],
+                            );
+                          }
+                      ),
+
+                    ),
+                    RaisedButton(
+                        onPressed: null,
+                        child: Text('ОПЛАТИТЬ'))
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       );
 
     });
