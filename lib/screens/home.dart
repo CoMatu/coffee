@@ -699,7 +699,7 @@ class _AnimationHomeState extends State<AnimationHome> {
                 SliverToBoxAdapter(
                   child: SizedBox(
                     //TODO сделать вычисляемый размер
-                    height: 1400.0,
+                    height: 2400.0,
                     child: NotificationListener<ScrollNotification>(
                       onNotification: (ScrollNotification notification) {
                         return _handlePageNotification(notification,
@@ -752,6 +752,7 @@ class _AnimationHomeState extends State<AnimationHome> {
             top: 25.0, bottom: 20.0),
         child: ScopedModelDescendant<MainModel>(
           builder: (context, child, model){
+            int itemCount = _getItemCount(model.orderList);
             return Container(
               color: Colors.orange[200],
               //TODO сделать вычисляемое значение
@@ -761,12 +762,12 @@ class _AnimationHomeState extends State<AnimationHome> {
                   children: <Widget>[
                     Expanded(
                       child: ListView.builder(
-                          itemCount: model.orderList.length,
+                          itemCount: itemCount,
                           itemBuilder: (context, index){
                             int productCount = _getCount(model.orderList, model.orderList[index].id);
                             return Row(
                               children: <Widget>[
-                                Text(model.orderList[index].title.toString()),
+                                Text(_getProductTitle(model.orderList, index)),
                                 IconButton(
                                   onPressed: (){
                                     //TODO
@@ -804,13 +805,34 @@ class _AnimationHomeState extends State<AnimationHome> {
   }
 
   int _getCount(List<Product> orderList, int id) {
-    int lenght = orderList.length;
+    int length = orderList.length;
     int count = 0;
-    for(int i = 0; i < lenght; i++){
+    for(int i = 0; i < length; i++){
       if(orderList[i].id == id){
         count++;
       }
     }
     return count;
+  }
+//TODO неправильно считает количество товара в корзине для вывода в список
+  int _getItemCount(List<Product> orderList) {
+    List<Product> prod = [];
+    for(int i = 0; i < orderList.length; i++){
+      if(!prod.contains(orderList[i])){
+        prod.add(orderList[i]);
+      }
+    }
+    return prod.length;
+  }
+
+  String _getProductTitle(List<Product> orderList, int index) {
+    List<Product> prod = [];
+    for(int i = 0; i < orderList.length; i++){
+      if(!prod.contains(orderList[i])){
+        prod.add(orderList[i]);
+      }
+    }
+    return prod[index].title;
+
   }
 }
