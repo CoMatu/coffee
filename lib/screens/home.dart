@@ -764,10 +764,10 @@ class _AnimationHomeState extends State<AnimationHome> {
                       child: ListView.builder(
                           itemCount: itemCount,
                           itemBuilder: (context, index){
-                            int productCount = _getCount(model.orderList, model.orderList[index].id);
+                            int productCount = model.cartList[model.titleList[index]];
                             return Row(
                               children: <Widget>[
-                                Text(_getProductTitle(model.orderList, index)),
+                                Text(model.titleList[index]),
                                 IconButton(
                                   onPressed: (){
                                     //TODO

@@ -6,9 +6,13 @@ class ProductModel extends Model {
   List<Product> _orderList = [];
   List<Product> get orderList => _orderList;
 
-  // Список заказа для корзины (название и количество)
+  // Карта заказа для корзины (название и количество)
   Map<String, int> _cartList = Map();
   Map<String, int> get cartList => _cartList;
+
+  // Список заказов для корзины (название)
+  List<String> _titleList = [];
+  List<String> get titleList => _titleList;
 
   // Количество выбранных продуктов для показа в карточке
   int getProductCount(Product product){
@@ -31,8 +35,8 @@ class ProductModel extends Model {
     return orderCost;
   }
 
-  // Формируем список уник продуктов для списка в корзине
-
+  // Считает количество уникальных продуктов в корзине (для списка в корзине)
+  int getItemCount() => _titleList.length;
 
 }
 
@@ -43,6 +47,11 @@ abstract class AddProduct extends ProductModel {
 
     // добавляем в карту название-количество если они отсутствуют
     _cartList.putIfAbsent(product.title, ()=> getProductCount(product));
+
+    // добавляем названия уник продуктов в список
+    if(!_titleList.contains(product.title)){
+      _titleList.add(product.title);
+    }
 
     notifyListeners();
   }
