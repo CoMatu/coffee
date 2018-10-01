@@ -13,6 +13,8 @@ const Color _kAppBackgroundColor = Colors.purple;
 const Duration _kScrollDuration = Duration(milliseconds: 400);
 const Curve _kScrollCurve = Curves.fastOutSlowIn;
 
+const Color _amber = Color(0xFFFFF8E1);
+
 // This app's contents start out at _kHeadingMaxHeight and they function like
 // an appbar. Initially the appbar occupies most of the screen and its section
 // headings are laid out in a column. By the time its height has been
@@ -750,9 +752,9 @@ class _AnimationHomeState extends State<AnimationHome> {
         child: ScopedModelDescendant<MainModel>(
           builder: (context, child, model) {
             int itemCount = model.titleList.length;
-            var heightOrder = itemCount * 30.0 + 50.0;
+            var heightOrder = itemCount * 40.0 + 50.0;
             return Container(
-              color: Colors.red[400],
+              color: _amber,
               //TODO сделать вычисляемое значение
               height: heightOrder,
               child: Center(
@@ -766,23 +768,31 @@ class _AnimationHomeState extends State<AnimationHome> {
                                 model.cartList[model.titleList[index]];
                             return Card(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text(model.titleList[index],
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    color: Colors.brown
-                                  ),),
-                                  Text(' $productCount',
-                                  style: TextStyle(
-                                    fontSize: 20.0
-                                  ),),
+                                  Text(
+                                    model.titleList[index],
+                                    style: TextStyle(
+                                        fontSize: 20.0, color: Colors.brown),
+                                  ),
+                                  Text(
+                                    ' $productCount',
+                                    style: TextStyle(fontSize: 20.0),
+                                  ),
                                 ],
                               ),
                             );
                           }),
                     ),
-                    RaisedButton(onPressed: () {}, child: Text('ОПЛАТИТЬ'))
+                    RaisedButton(
+                      onPressed: () {},
+                      child: Text(
+                        'ОПЛАТИТЬ',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      color: Colors.green,
+                    )
                   ],
                 ),
               ),
