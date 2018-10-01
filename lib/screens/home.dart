@@ -752,7 +752,7 @@ class _AnimationHomeState extends State<AnimationHome> {
             top: 25.0, bottom: 20.0),
         child: ScopedModelDescendant<MainModel>(
           builder: (context, child, model){
-            int itemCount = _getItemCount(model.orderList);
+            int itemCount = model.titleList.length;
             return Container(
               color: Colors.orange[200],
               //TODO сделать вычисляемое значение
@@ -768,19 +768,23 @@ class _AnimationHomeState extends State<AnimationHome> {
                             return Row(
                               children: <Widget>[
                                 Text(model.titleList[index]),
+/*
                                 IconButton(
                                   onPressed: (){
                                     //TODO
                                   },
                                     icon: Icon(Icons.remove, color: Colors.red,),
                                 ),
-                                Text('$productCount'),
+*/
+                                Text(' $productCount'),
+/*
                                 IconButton(
                                   onPressed: (){
                                     //TODO
                                   },
                                   icon: Icon(Icons.add, color: Colors.blue,),
                                 )
+*/
 
                             ],
                             );

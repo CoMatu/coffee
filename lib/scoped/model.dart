@@ -29,7 +29,6 @@ class ProductModel extends Model {
   double getOrderCost(){
     double orderCost = 0.00;
     for(int i = 0; i < _orderList.length; i++){
-      //TODO расчет
       orderCost = orderCost + _orderList[i].price;
     }
     return orderCost;
@@ -46,7 +45,7 @@ abstract class AddProduct extends ProductModel {
     _orderList.add(product);
 
     // добавляем в карту название-количество если они отсутствуют
-    _cartList.putIfAbsent(product.title, ()=> getProductCount(product));
+    _cartList[product.title] = getProductCount(product);
 
     // добавляем названия уник продуктов в список
     if(!_titleList.contains(product.title)){
@@ -60,9 +59,12 @@ abstract class AddProduct extends ProductModel {
 // Убираем продукты из общего списка (на карточке продукта)
 abstract class RemoveProduct extends ProductModel {
   void removeProduct(Product product){
-    if(_orderList.length > 0)
+    if(_orderList.length > 0){
       _orderList.remove(product);
+      _titleList.remove(product.title);
       //remove product
+      _cartList[product.title] = getProductCount(product);
+    }
     notifyListeners();
   }
 }
