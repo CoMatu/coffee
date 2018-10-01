@@ -61,9 +61,9 @@ abstract class RemoveProduct extends ProductModel {
   void removeProduct(Product product){
     if(_orderList.length > 0){
       _orderList.remove(product);
-      _titleList.remove(product.title);
-      //remove product
       _cartList[product.title] = getProductCount(product);
+      if(!_orderList.contains(product))
+      _titleList.remove(product.title);
     }
     notifyListeners();
   }

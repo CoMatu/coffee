@@ -38,7 +38,7 @@ class StartScreenState extends State<StartScreen> {
               googleAppID: '1:473029291676:android:1995995ec3fc285b'),
     );
 
-    var _duration = Duration(seconds: 2);
+    var _duration = Duration(seconds: 1);
     return Timer(_duration, navigationPage);
   }
 

@@ -530,20 +530,19 @@ class _AnimationHomeState extends State<AnimationHome> {
 
   _AnimationHomeState(this.allSections);
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-        floatingActionButton: _getFAB(_scaffoldKey),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        backgroundColor: _kAppBackgroundColor,
-        body: Builder(
-          // Insert an element so that _buildBody can find the PrimaryScrollController.
-          //Вставьте элемент так, чтобы _buildBody мог найти основной ScrollController.
-          builder: _buildBody,
-        ),
-      );
+      floatingActionButton: _getFAB(_scaffoldKey),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      backgroundColor: _kAppBackgroundColor,
+      body: Builder(
+        // Insert an element so that _buildBody can find the PrimaryScrollController.
+        //Вставьте элемент так, чтобы _buildBody мог найти основной ScrollController.
+        builder: _buildBody,
+      ),
+    );
   }
 
   // Only enable paging for the heading when the user has scrolled to midScrollOffset.
@@ -726,77 +725,64 @@ class _AnimationHomeState extends State<AnimationHome> {
   }
 
   Widget _getFAB(GlobalKey<ScaffoldState> _scaffoldKey) {
-    return ScopedModelDescendant<MainModel>(
-      builder: (context, child, model){
-        double cost = model.getOrderCost();
+    return ScopedModelDescendant<MainModel>(builder: (context, child, model) {
+      double cost = model.getOrderCost();
 
-        if(model.orderList.isNotEmpty){
-          return FloatingActionButton.extended(
-              backgroundColor: Colors.blue[400],
-              icon: Icon(Icons.shopping_cart),
-              label: Text('Сумма заказа $cost руб'),
-              onPressed: (){
-                _persistentBottomSheet(_scaffoldKey);
-              });
-        } else {
-          return Container();
-        }
+      if (model.orderList.isNotEmpty) {
+        return FloatingActionButton.extended(
+            backgroundColor: Colors.blue[400],
+            icon: Icon(Icons.shopping_cart),
+            label: Text('Сумма заказа $cost руб'),
+            onPressed: () {
+              _persistentBottomSheet(_scaffoldKey);
+            });
+      } else {
+        return Container();
       }
-    );
+    });
   }
 
   void _persistentBottomSheet(GlobalKey<ScaffoldState> _scaffoldKey) {
-    _scaffoldKey.currentState.showBottomSheet((context){
+    _scaffoldKey.currentState.showBottomSheet((context) {
       return Padding(
-        padding: const EdgeInsets.only(left: 60.0, right: 60.0,
-            top: 25.0, bottom: 20.0),
+        padding: const EdgeInsets.only(
+            left: 60.0, right: 60.0, top: 25.0, bottom: 20.0),
         child: ScopedModelDescendant<MainModel>(
-          builder: (context, child, model){
+          builder: (context, child, model) {
             int itemCount = model.titleList.length;
+            var heightOrder = itemCount * 30.0 + 50.0;
             return Container(
-              color: Colors.orange[200],
+              color: Colors.red[400],
               //TODO сделать вычисляемое значение
-              height: 400.0,
+              height: heightOrder,
               child: Center(
                 child: Column(
                   children: <Widget>[
                     Expanded(
                       child: ListView.builder(
                           itemCount: itemCount,
-                          itemBuilder: (context, index){
-                            int productCount = model.cartList[model.titleList[index]];
-                            return Row(
-                              children: <Widget>[
-                                Text(model.titleList[index]),
-/*
-                                IconButton(
-                                  onPressed: (){
-                                    //TODO
-                                  },
-                                    icon: Icon(Icons.remove, color: Colors.red,),
-                                ),
-*/
-                                Text(' $productCount'),
-/*
-                                IconButton(
-                                  onPressed: (){
-                                    //TODO
-                                  },
-                                  icon: Icon(Icons.add, color: Colors.blue,),
-                                )
-*/
-
-                            ],
+                          itemBuilder: (context, index) {
+                            int productCount =
+                                model.cartList[model.titleList[index]];
+                            return Card(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(model.titleList[index],
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Colors.brown
+                                  ),),
+                                  Text(' $productCount',
+                                  style: TextStyle(
+                                    fontSize: 20.0
+                                  ),),
+                                ],
+                              ),
                             );
-                          }
-                      ),
-
+                          }),
                     ),
-                    RaisedButton(
-                        onPressed: (){
-
-                        },
-                        child: Text('ОПЛАТИТЬ'))
+                    RaisedButton(onPressed: () {}, child: Text('ОПЛАТИТЬ'))
                   ],
                 ),
               ),
@@ -804,39 +790,6 @@ class _AnimationHomeState extends State<AnimationHome> {
           },
         ),
       );
-
     });
-  }
-
-  int _getCount(List<Product> orderList, int id) {
-    int length = orderList.length;
-    int count = 0;
-    for(int i = 0; i < length; i++){
-      if(orderList[i].id == id){
-        count++;
-      }
-    }
-    return count;
-  }
-//TODO неправильно считает количество товара в корзине для вывода в список
-  int _getItemCount(List<Product> orderList) {
-    List<Product> prod = [];
-    for(int i = 0; i < orderList.length; i++){
-      if(!prod.contains(orderList[i])){
-        prod.add(orderList[i]);
-      }
-    }
-    return prod.length;
-  }
-
-  String _getProductTitle(List<Product> orderList, int index) {
-    List<Product> prod = [];
-    for(int i = 0; i < orderList.length; i++){
-      if(!prod.contains(orderList[i])){
-        prod.add(orderList[i]);
-      }
-    }
-    return prod[index].title;
-
   }
 }
