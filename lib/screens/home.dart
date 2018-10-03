@@ -752,7 +752,7 @@ class _AnimationHomeState extends State<AnimationHome> {
         child: ScopedModelDescendant<MainModel>(
           builder: (context, child, model) {
             int itemCount = model.titleList.length;
-            var heightOrder = itemCount * 40.0 + 50.0;
+            var heightOrder = itemCount * 35.0 + 50.0;
             return Container(
               color: _amber,
               //TODO сделать вычисляемое значение
@@ -766,20 +766,31 @@ class _AnimationHomeState extends State<AnimationHome> {
                           itemBuilder: (context, index) {
                             int productCount =
                                 model.cartList[model.titleList[index]];
+                            var fontStyleCart = TextStyle(
+                                        fontFamily: 'Play',
+                                          fontSize: 20.0, color: Colors.brown);
                             return Card(
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
-                                  Text(
-                                    model.titleList[index],
-                                    style: TextStyle(
-                                        fontSize: 20.0, color: Colors.brown),
+                                  Expanded(
+                                    child: Padding(
+                                        padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                                      child: Text(
+                                        model.titleList[index],
+                                        style: fontStyleCart,
+                                      )
+                                      ,
+                                    )
                                   ),
-                                  Text(
-                                    ' $productCount',
-                                    style: TextStyle(fontSize: 20.0),
-                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                                    child: Text(
+                                      ' $productCount',
+                                      style: fontStyleCart,
+                                    ),
+                                  )
                                 ],
                               ),
                             );
