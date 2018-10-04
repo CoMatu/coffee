@@ -751,7 +751,7 @@ class _AnimationHomeState extends State<AnimationHome> {
             left: 60.0, right: 60.0, top: 25.0, bottom: 20.0),
         child: ScopedModelDescendant<MainModel>(
           builder: (context, child, model) {
-            int itemCount = model.titleList.length;
+            int itemCount = model.positionList.length;
             var heightOrder = itemCount * 35.0 + 50.0;
             return Container(
               color: _amber,
@@ -765,7 +765,7 @@ class _AnimationHomeState extends State<AnimationHome> {
                           itemCount: itemCount,
                           itemBuilder: (context, index) {
                             int productCount =
-                                model.cartList[model.titleList[index]];
+                                model.positionList[index].count;
                             var fontStyleCart = TextStyle(
                                         fontFamily: 'Play',
                                           fontSize: 20.0, color: Colors.brown);
@@ -778,7 +778,7 @@ class _AnimationHomeState extends State<AnimationHome> {
                                     child: Padding(
                                         padding: EdgeInsets.only(left: 8.0, right: 8.0),
                                       child: Text(
-                                        model.titleList[index],
+                                        model.positionList[index].title,
                                         style: fontStyleCart,
                                       )
                                       ,
