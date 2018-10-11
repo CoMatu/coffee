@@ -42,7 +42,7 @@ class SectionTitle extends StatelessWidget {
   static const TextStyle sectionTitleStyle = TextStyle(
     fontFamily: 'Play',
     inherit: false,
-    fontSize: 24.0,
+    fontSize: 22.0,
     fontWeight: FontWeight.w500,
     color: Colors.white,
     textBaseline: TextBaseline.alphabetic,

@@ -1,7 +1,6 @@
 class OrderPosition {
-  int id;
-  String title;
+  final String title;
   int count;
 
-  OrderPosition(this.id, this.title, this.count);
+  OrderPosition(this.title, this.count);
 }

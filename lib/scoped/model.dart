@@ -9,9 +9,9 @@ class ProductModel extends Model {
   List<Product> get orderList => _orderList;
 
   // Список позиций заказа для показа в корзине
-  List<OrderPosition> _positionList = [];
+  Map<int, OrderPosition> _positionList = Map();
 
-  List<OrderPosition> get positionList => getPositions();
+  Map<int, OrderPosition> get positionList => _positionList;
 
   // Количество выбранных продуктов для показа в карточке
   int getProductCount(Product product) {
@@ -32,29 +32,35 @@ class ProductModel extends Model {
     }
     return orderCost;
   }
-
-  // Формируем список уникальных позиций для показа в корзине
-  List<OrderPosition> getPositions() {
-    for (int i = 0; i < _orderList.length; i++) {
-      OrderPosition position = OrderPosition(_orderList[i].id,
-          _orderList[i].title, getProductCount(_orderList[i]));
-
-      if (!_positionList.contains(_orderList[i].id)) {
-        _positionList.add(position);
-      } else {
-
-      }
-    }
-    return _positionList;
-  }
 }
 
 // Добавляем продукты в общий список (на карточке продукта)
 abstract class AddProduct extends ProductModel {
   void addProduct(Product product) {
     _orderList.add(product);
+    addPosition(product);
 
     notifyListeners();
+  }
+
+  void addPosition(Product product) {
+    var uniqueProducts = _orderList.toSet().toList();
+    for(int i = 0; i < uniqueProducts.length; i++){
+      var value = OrderPosition(
+          uniqueProducts[i].title,
+          getCount(uniqueProducts[i].id));
+      _positionList[uniqueProducts[i].id] = value;
+    }
+//    print(uniqueProducts.length.toString());
+  }
+
+  int getCount(int id) {
+    int count = 0;
+    for(int i = 0; i < _orderList.length; i++){
+      if(_orderList[i].id == id)
+        count ++;
+    }
+    return count;
   }
 }
 
@@ -63,8 +69,21 @@ abstract class RemoveProduct extends ProductModel {
   void removeProduct(Product product) {
     if (_orderList.length > 0) {
       _orderList.remove(product);
+      removePosition(product);
     }
     notifyListeners();
+  }
+
+  void removePosition(Product product) {
+    int counter = getProductCount(product);
+    if(counter == 0){
+      _positionList.remove(product.id);
+    } else {
+      var value = OrderPosition(
+          product.title,
+          counter);
+      _positionList[product.id] = value;
+    }
   }
 }
 

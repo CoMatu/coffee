@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:coffee/models/order_position.dart';
 import 'package:coffee/models/product.dart';
 import 'package:coffee/scoped/model.dart';
 import 'package:flutter/material.dart';
@@ -752,10 +753,11 @@ class _AnimationHomeState extends State<AnimationHome> {
         child: ScopedModelDescendant<MainModel>(
           builder: (context, child, model) {
             int itemCount = model.positionList.length;
+            Map<int, OrderPosition> map = model.positionList;
+            var positions = map.values.toList();
             var heightOrder = itemCount * 35.0 + 50.0;
             return Container(
               color: _amber,
-              //TODO сделать вычисляемое значение
               height: heightOrder,
               child: Center(
                 child: Column(
@@ -764,8 +766,8 @@ class _AnimationHomeState extends State<AnimationHome> {
                       child: ListView.builder(
                           itemCount: itemCount,
                           itemBuilder: (context, index) {
-                            int productCount =
-                                model.positionList[index].count;
+                            OrderPosition position = positions[index];
+                            int productCount = position.count;
                             var fontStyleCart = TextStyle(
                                         fontFamily: 'Play',
                                           fontSize: 20.0, color: Colors.brown);
@@ -778,7 +780,7 @@ class _AnimationHomeState extends State<AnimationHome> {
                                     child: Padding(
                                         padding: EdgeInsets.only(left: 8.0, right: 8.0),
                                       child: Text(
-                                        model.positionList[index].title,
+                                        position.title,
                                         style: fontStyleCart,
                                       )
                                       ,

@@ -30,7 +30,7 @@ class GetProductsList {
       }
       for (int i = 0; i < snapList.length; i++) {
         Map<String, dynamic> data = Map.from(snapList[i] as Map);
-        Product product = serializers.deserializeWith(Product.serializer, data);
+        final Product product = serializers.deserializeWith(Product.serializer, data);
         productsList.add(product);
       }
       list.add(productsList);
