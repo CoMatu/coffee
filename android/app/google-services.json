@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "473029291676-vvdcslvp7ttuffboct2ic3gph2r9a0fl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.skazkimal.coffee",
+            "certificate_hash": "3398b2490d489e777c87d5a9d81e920b38d7e34a"
+          }
+        },
+        {
           "client_id": "473029291676-90q4per7ttnpoph7moir97bckvfo1aca.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "473029291676-90q4per7ttnpoph7moir97bckvfo1aca.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

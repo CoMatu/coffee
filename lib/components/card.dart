@@ -144,31 +144,6 @@ class ProductCard extends StatelessWidget {
                             ],
                           ),
                         ),
-/*
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 8.0),
-                          child: ScopedModelDescendant<ProductModel>(
-                              builder: (context, child, model){
-                                return FlatButton(
-                                  child: Text('В КОРЗИНУ: $cost руб',
-                                    style: TextStyle(
-                                        fontFamily: 'Play',
-                                        color: Colors.blue
-                                    ),),
-                                  color: _amber,
-                                  onPressed: (){
-                                    for(int i = 0; i < counter; i++){
-                                      //orderList.add(detail);
-                                      model.orderList.add(detail);
-                                      print(model.orderList.toString());
-                                    }
-                                  },
-                                );
-
-                              }
-                          )
-                        )
-*/
                       ],
                     ),
                   ),
