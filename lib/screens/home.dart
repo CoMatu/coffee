@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:coffee/models/order_position.dart';
 import 'package:coffee/models/product.dart';
 import 'package:coffee/scoped/model.dart';
+import 'package:coffee/screens/payment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -799,7 +800,12 @@ class _AnimationHomeState extends State<AnimationHome> {
                           }),
                     ),
                     RaisedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PaymentScreen()),
+                        );
+                      },
                       child: Text(
                         'ОПЛАТИТЬ',
                         style: TextStyle(color: Colors.white),
